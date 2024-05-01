@@ -16,11 +16,15 @@ const router = createBrowserRouter(
     <Route errorElement={<ErrorPage />} path="/">
       <Route index element={<LoginPage />} loader={tokenLoader} />
       <Route
-        path=":userName"
         element={<UserDetailsRoot />}
         loader={checkTokenLoader}
+        id="user-details-root"
       >
-        <Route index element={<UserProfilePage />} />
+        <Route index path="profile" element={<UserProfilePage />} />
+        <Route path="top-artists" />
+        <Route path="top-tracks" />
+        <Route path="recent" />
+        <Route path="playlists" />
       </Route>
       <Route path="logout" action={logoutAction} />
     </Route>
@@ -35,7 +39,11 @@ export const routes = {
    */
   login: '/',
   /**
-   * User details page.
+   * User details.
    */
-  userDetails: '/:user',
+  profile: '/profile',
+  'top-artists': '/top-artists',
+  'top-tracks': '/top-tracks',
+  recent: '/recent',
+  playlists: '/playlists',
 } as const;

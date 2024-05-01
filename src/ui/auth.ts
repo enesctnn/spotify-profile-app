@@ -1,6 +1,4 @@
 import { redirect } from 'react-router-dom';
-import { queryClient } from '../util/client';
-import { fetchUserProfileDetails } from '../util/http-spotify';
 
 export function getTokenDuration() {
   const storedExpirationDate = localStorage.getItem('expiration');
@@ -32,7 +30,7 @@ export function setExpirationToken() {
   localStorage.setItem('expiration', expiration.toISOString());
 }
 
-export async function tokenLoader() {
+export function tokenLoader() {
   let token = getAuthToken();
   if (!token) {
     const tkn = window.location.hash
@@ -45,15 +43,8 @@ export async function tokenLoader() {
       localStorage.setItem('token', String(tkn));
     }
   }
-  if (!!token && token !== 'EXPIRED') {
-    const res = await queryClient.fetchQuery({
-      queryKey: ['user-details', token],
-      queryFn: ({ signal }) => fetchUserProfileDetails(token, signal),
-    });
-    const { display_name } = res;
+  if (token) return redirect(`/profile`);
 
-    return redirect(`/${display_name.split(' ').join('').toLowerCase()}`);
-  }
   return token;
 }
 
