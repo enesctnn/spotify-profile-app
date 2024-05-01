@@ -5,7 +5,7 @@ export default {
     extend: {
       colors: {
         spotify: {
-          green: '#1db954',
+          green: { DEFAULT: '#1db954', 100: '#1ed760' },
           gray: {
             DEFAULT: '#121212',
             100: '#b3b3b3',

@@ -3,7 +3,6 @@ import { Button } from '../ui/button';
 
 export function LoginButton() {
   const CLIENT_ID = import.meta.env.VITE_CLIENT_ID;
-
   const AUTH_ENDPOINT = 'https://accounts.spotify.com/authorize';
 
   return (

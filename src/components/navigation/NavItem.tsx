@@ -18,7 +18,7 @@ export function NavItem({
     <li
       aria-label={`User's ${title}`}
       className={cn(
-        'group relative flex w-full flex-col items-center justify-center whitespace-nowrap transition-all hover:bg-spotify-gray-300 hover:shadow-sm',
+        'group relative flex w-full flex-col items-center justify-center transition-all hover:bg-spotify-gray-300 hover:shadow-sm',
         isActive && 'bg-spotify-gray-300/60'
       )}
     >
@@ -30,9 +30,9 @@ export function NavItem({
       />
       <Link
         to={path}
-        className="h-full w-full p-2 text-center text-xl font-semibold leading-loose md:text-xs"
+        className="h-full w-full p-2 text-center text-xs font-semibold leading-loose"
       >
-        <Icon className="w-full max-md:text-4xl md:text-2xl" />
+        <Icon className="w-full text-2xl md:text-3xl" />
         {title}
       </Link>
     </li>

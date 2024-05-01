@@ -1,5 +1,6 @@
 import { AxiosError } from 'axios';
 import {
+  SpotifyPlaylistResponse,
   SpotifyProfileResponse,
   SpotifyTopItemsResponse,
 } from '../@types/spotify.res';
@@ -23,13 +24,37 @@ export async function fetchUserProfileDetails(
   }
 }
 
-export async function fetchUsersTopItem(
-  itemType: 'artists' | 'tracks',
+export async function fetchUserTopItems(
   authorizationToken: string,
-  signal?: AbortSignal
+  item_type: 'artists' | 'tracks',
+  time_range: 'short_term' | 'medium_term' | 'long_term',
+  signal?: AbortSignal,
+  limit = 50,
 ): Promise<SpotifyTopItemsResponse> {
   try {
-    const res = await spotifyAxios.get(`me/top/${itemType}`, {
+    const res = await spotifyAxios.get(
+      `me/top/${item_type}?limit=${limit}&time_range=${time_range}`,
+      {
+        headers: {
+          Authorization: `Bearer ${authorizationToken}`,
+        },
+        signal,
+      }
+    );
+    return res.data;
+  } catch (error) {
+    if (error instanceof AxiosError) throw new Error(error.message);
+    throw new Error('Something went wrong while fetching user top items!');
+  }
+}
+
+export async function fetchUserPlaylists(
+  authorizationToken: string,
+  signal?: AbortSignal,
+  limit = 50,
+): Promise<SpotifyPlaylistResponse> {
+  try {
+    const res = await spotifyAxios.get(`me/playlists?limit=${limit}`, {
       headers: {
         Authorization: `Bearer ${authorizationToken}`,
       },
@@ -38,6 +63,6 @@ export async function fetchUsersTopItem(
     return res.data;
   } catch (error) {
     if (error instanceof AxiosError) throw new Error(error.message);
-    throw new Error('Something went wrong while fetching user details!');
+    throw new Error('Something went wrong while fetching user playlists!');
   }
 }

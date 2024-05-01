@@ -1,9 +1,11 @@
+import ProfileArticle from '../components/profile/ProfileArticle';
+
 function UserProfilePage() {
-
-
-  return <div className="text-4xl text-white">
-    
-  </div>;
+  return (
+    <>
+      <ProfileArticle />
+    </>
+  );
 }
 
 export default UserProfilePage;

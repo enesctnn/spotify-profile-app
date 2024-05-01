@@ -10,10 +10,11 @@ import UserDetailsRoot from '../layouts/UserDetailsRoot';
 import LoginPage from '../pages/LoginPage';
 import UserProfilePage from '../pages/UserProfilePage';
 import { checkTokenLoader, tokenLoader } from '../ui/auth';
+import { baseUrl } from '../config/baseUrl';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route errorElement={<ErrorPage />} path="/">
+    <Route errorElement={<ErrorPage />} path={baseUrl}>
       <Route index element={<LoginPage />} loader={tokenLoader} />
       <Route
         element={<UserDetailsRoot />}

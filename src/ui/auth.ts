@@ -1,4 +1,5 @@
 import { redirect } from 'react-router-dom';
+import { baseUrl } from '../config/baseUrl';
 
 export function getTokenDuration() {
   const storedExpirationDate = localStorage.getItem('expiration');
@@ -43,13 +44,13 @@ export function tokenLoader() {
       localStorage.setItem('token', String(tkn));
     }
   }
-  if (token) return redirect(`/profile`);
+  if (token) return redirect(`${baseUrl}/profile`);
 
   return token;
 }
 
 export function checkTokenLoader() {
   const token = getAuthToken();
-  if (!token) return redirect('/');
+  if (!token) return redirect(baseUrl);
   return token;
 }

@@ -54,3 +54,49 @@ interface SpotifyArtistObject {
   type: string;
   uri: string;
 }
+
+export interface SpotifyPlaylistResponse {
+  href: string;
+  limit: number;
+  next: string | null;
+  offset: number;
+  previous: string | null;
+  total: number;
+  items: SpotifyPlaylist[];
+}
+
+interface SpotifyPlaylist {
+  collaborative: boolean;
+  description: string | null;
+  external_urls: {
+    spotify: string;
+  };
+  href: string;
+  id: string;
+  images: SpotifyImage[];
+  name: string;
+  owner: SpotifyOwner;
+  public: boolean | null;
+  snapshot_id: string;
+  tracks: {
+    href: string;
+    total: number;
+  } | null;
+  type: string;
+  uri: string;
+}
+
+interface SpotifyOwner {
+  external_urls: {
+    spotify: string;
+  };
+  followers: {
+    href: string;
+    total: number;
+  };
+  href: string;
+  id: string;
+  type: string;
+  uri: string;
+  display_name: string;
+}
