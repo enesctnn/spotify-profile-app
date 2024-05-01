@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply h-full;
+  }
+  body {
+    @apply font-montserrat relative h-full min-w-max tracking-wide antialiased;
+  }
+  main#root {
+    @apply relative flex min-h-screen items-center justify-evenly bg-black text-white;
+  }
+}
