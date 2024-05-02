@@ -1,15 +1,14 @@
 import { useQuery } from '@tanstack/react-query';
 import { fetchUserProfileDetails } from '../util/http-spotify';
+import { getAuthToken } from '../ui/auth';
 
 export function useUserDetails() {
-  const token = localStorage.getItem('token');
-
+  const token = getAuthToken();
   if (!token) throw new Error('Missing token');
 
   const { data } = useQuery({
     queryKey: ['user-details', token],
-    queryFn: ({ signal }) => fetchUserProfileDetails(token!, signal),
-    enabled: !!token,
+    queryFn: ({ signal }) => fetchUserProfileDetails(token, signal),
   });
 
   if (data)

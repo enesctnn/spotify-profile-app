@@ -89,3 +89,24 @@ export async function fetchUserPlaylists(
     throw new Error('Something went wrong while fetching user playlists!');
   }
 }
+export async function fetchUserRecentlyPlayed(
+  authorizationToken: string,
+  signal?: AbortSignal,
+  limit = 15
+): Promise<SpotifyPlaylistResponse> {
+  try {
+    const res = await spotifyAxios.get(
+      `me/player/recently-played?limit=${limit}`,
+      {
+        headers: {
+          Authorization: `Bearer ${authorizationToken}`,
+        },
+        signal,
+      }
+    );
+    return res.data;
+  } catch (error) {
+    if (error instanceof AxiosError) throw new Error(error.message);
+    throw new Error('Something went wrong while fetching user playlists!');
+  }
+}

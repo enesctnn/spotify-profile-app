@@ -1,5 +1,5 @@
 import { useTopTracks } from '../../../hooks/useTopTracks';
-import { ListItem } from '../../profile/top-items/ListItem';
+import { TrackListItem } from '../../shared/TrackListItem';
 
 export function TopTracksList({
   timeRange,
@@ -11,19 +11,21 @@ export function TopTracksList({
   return (
     <ul className="grid place-content-center items-center md:grid-cols-2 xl:grid-cols-3">
       {topTracks &&
-        topTracks.map(item => (
-          <ListItem
-            key={item.id}
-            id={item.id}
-            img={item.img}
-            item_type="tracks"
-            track_name={item.track_name}
-            album_name={item.album_name}
-            artists={item.artists}
-            duration={item.duration}
-            className="max-w-[400px]"
-          />
-        ))}
+        topTracks.map(
+          ({ id, img, track_name, album_name, artists, duration }) => (
+            <TrackListItem
+              key={id}
+              id={id}
+              img={img}
+              item_type="tracks"
+              track_name={track_name}
+              album_name={album_name}
+              artists={artists}
+              duration={duration}
+              className="max-w-[400px]"
+            />
+          )
+        )}
     </ul>
   );
 }

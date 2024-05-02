@@ -14,7 +14,7 @@ export function ProfileArticle() {
 
   return (
     userData && (
-      <Card className="space-y-4 text-xs font-semibold !py-14">
+      <Card className="space-y-4 !py-14 text-xs font-semibold">
         {userData && (
           <ProfileHeader
             spotify_url={userData.spotify_url}

@@ -9,10 +9,7 @@ export interface SpotifyProfileResponse {
   external_urls: {
     spotify: string;
   };
-  followers: {
-    href: string;
-    total: number;
-  };
+  followers: SpotifyFollowers;
   href: string;
   id: string;
   images: SpotifyImage[];
@@ -21,30 +18,49 @@ export interface SpotifyProfileResponse {
   uri: string;
 }
 
-interface SpotifyImage {
-  url: string;
-  height: number | null;
-  width: number | null;
+export interface SpotifyFollowers {
+  href: string;
+  total: number;
 }
 
-export interface SpotifyTopArtistsResponse {
+export interface SpotifyTopArtistsResponse
+  extends SpotifyPagingObject<SpotifyArtist> {}
+
+export interface SpotifyPlaylistResponse
+  extends SpotifyPagingObject<SpotifyPlaylist> {}
+
+export interface SpotifyTopTracksResponse
+  extends SpotifyPagingObject<SpotifyTrack> {}
+
+export interface SpotifyRecentlyPlayedResponse
+  extends SpotifyPagingObject<SpotifyRecentlyPlayedItem> {
+  cursors: {
+    after: string;
+    before: string;
+  };
+}
+
+export interface SpotifyPagingObject<T> {
   href: string;
+  items: T[];
   limit: number;
   next: string | null;
   offset: number;
   previous: string | null;
   total: number;
-  items: SpotifyArtistObject[];
 }
 
-interface SpotifyArtistObject {
+export interface SpotifyImage {
+  url: string;
+  height: number | null;
+  width: number | null;
+}
+
+export interface SpotifyArtist {
   external_urls: {
     spotify: string;
   };
-  followers: {
-    href: string;
-    total: number;
-  };
+  followers: SpotifyFollowers;
   genres: string[];
   href: string;
   id: string;
@@ -55,17 +71,7 @@ interface SpotifyArtistObject {
   uri: string;
 }
 
-export interface SpotifyPlaylistResponse {
-  href: string;
-  limit: number;
-  next: string | null;
-  offset: number;
-  previous: string | null;
-  total: number;
-  items: SpotifyPlaylist[];
-}
-
-interface SpotifyPlaylist {
+export interface SpotifyPlaylist {
   collaborative: boolean;
   description: string | null;
   external_urls: {
@@ -86,83 +92,40 @@ interface SpotifyPlaylist {
   uri: string;
 }
 
-interface SpotifyOwner {
+export interface SpotifyOwner {
   external_urls: {
     spotify: string;
   };
-  followers: {
-    href: string;
-    total: number;
-  };
+  followers: SpotifyFollowers | undefined;
   href: string;
   id: string;
   type: string;
   uri: string;
   display_name: string;
 }
-export interface SpotifyTopTracksResponse {
-  href: string;
-  limit: number;
-  next: string | null;
-  offset: number;
-  previous: string | null;
-  total: number;
-  items: SpotifyTrack[];
-}
 
-interface SpotifyTrack {
-  album: {
-    album_type: string;
-    total_tracks: number;
-    available_markets: string[];
-    external_urls: {
-      spotify: string;
-    };
-    href: string;
-    id: string;
-    images: {
-      url: string;
-      height: number;
-      width: number;
-    }[];
-    name: string;
-    release_date: string;
-    release_date_precision: string;
-    type: string;
-    uri: string;
-    artists: {
-      external_urls: {
-        spotify: string;
-      };
-      href: string;
-      id: string;
-      name: string;
-      type: string;
-      uri: string;
-    }[];
-  };
-  artists: {
-    external_urls: {
-      spotify: string;
-    };
-    href: string;
-    id: string;
-    name: string;
-    type: string;
-    uri: string;
-  }[];
+export interface SpotifyTrack {
+  album: SpotifyAlbum;
+  artists: SpotifyArtist[];
   available_markets: string[];
   disc_number: number;
   duration_ms: number;
   explicit: boolean;
   external_ids: {
     isrc: string;
+    ean: string;
+    upc: string;
   };
   external_urls: {
     spotify: string;
   };
   href: string;
   id: string;
+  is_playable: boolean;
+  linked_from: { [key: string]: string };
+  restrictions: {
+    reason: string;
+  };
   name: string;
   popularity: number;
   preview_url: string | null;
@@ -170,4 +133,37 @@ interface SpotifyTrack {
   type: string;
   uri: string;
   is_local: boolean;
+}
+
+export interface SpotifyAlbum {
+  album_type: string;
+  total_tracks: number;
+  available_markets: string[];
+  external_urls: {
+    spotify: string;
+  };
+  href: string;
+  id: string;
+  images: SpotifyImage[];
+  name: string;
+  release_date: string;
+  release_date_precision: string;
+  restrictions: {
+    reason: string;
+  };
+  type: string;
+  uri: string;
+}
+
+export interface SpotifyRecentlyPlayedItem {
+  track: SpotifyTrack;
+  played_at: string;
+  context: {
+    type: string;
+    href: string;
+    external_urls: {
+      spotify: string;
+    };
+    uri: string;
+  };
 }

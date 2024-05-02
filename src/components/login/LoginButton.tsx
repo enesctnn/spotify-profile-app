@@ -4,7 +4,7 @@ import { Button } from '../ui/button';
 const CLIENT_ID = import.meta.env.VITE_CLIENT_ID;
 const AUTH_ENDPOINT = 'https://accounts.spotify.com/authorize';
 const SCOPE =
-  'user-read-private user-read-email user-library-read playlist-read-private user-top-read user-read-recently-played user-read-currently-playing';
+  'user-read-private user-read-email user-library-read playlist-read-private user-top-read user-read-recently-played user-read-currently-playing user-follow-read';
 
 export function LoginButton() {
   return (

@@ -1,8 +1,8 @@
 import { FaInfoCircle } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import { baseUrl } from '../../../config/baseUrl';
+import { baseUrl } from '../../config/baseUrl';
 
-export const ListItem = ({
+export const TrackListItem = ({
   id,
   img,
   item_type,

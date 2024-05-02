@@ -1,6 +1,6 @@
 import { Card } from '../../ui/card';
-import { TopArtists } from './TopArtists';
-import { TopTracks } from './TopTracks';
+import { TopArtists } from './artists/TopArtists';
+import { TopTracks } from './tracks/TopTracks';
 
 export function TopItems() {
   return (

@@ -1,6 +1,6 @@
-import { useTopTracks } from '../../../hooks/useTopTracks';
-import { ListItem } from './ListItem';
-import { TopItemsList } from './TopItemsList';
+import { useTopTracks } from '../../../../hooks/useTopTracks';
+import { TrackListItem } from '../../../shared/TrackListItem';
+import { TopItemsList } from '../TopItemsList';
 
 export function TopTracks() {
   const topTracks = useTopTracks('long_term', 10);
@@ -9,7 +9,7 @@ export function TopTracks() {
     <TopItemsList path="top-tracks" title="Tracks">
       {topTracks &&
         topTracks.map(track => (
-          <ListItem
+          <TrackListItem
             key={track.id}
             id={track.id}
             img={track.img}

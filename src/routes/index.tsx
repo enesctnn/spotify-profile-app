@@ -10,6 +10,7 @@ import { loader as wrongNavigationLoader } from '../actions/WrongNavigation';
 import { baseUrl } from '../config/baseUrl';
 import UserDetailsRoot from '../layouts/UserDetailsRoot';
 import LoginPage from '../pages/LoginPage';
+import PlaylistsPage from '../pages/PlaylistsPage';
 import TopArtistsPage from '../pages/TopArtistsPage';
 import TopTracksPage from '../pages/TopTracksPage';
 import UserProfilePage from '../pages/UserProfilePage';
@@ -28,7 +29,9 @@ const router = createBrowserRouter(
         <Route path="top-artists" element={<TopArtistsPage />} />
         <Route path="top-tracks" element={<TopTracksPage />} />
         <Route path="recent" />
-        <Route path="playlists" />
+        <Route path="playlists" element={<PlaylistsPage />}>
+          <Route path=":id" />
+        </Route>
         <Route path="tracks/:id" />
         <Route path="artists/:id" />
       </Route>
@@ -39,18 +42,3 @@ const router = createBrowserRouter(
 );
 
 export default router;
-
-export const routes = {
-  /**
-   * Login route.
-   */
-  login: baseUrl,
-  /**
-   * User detail routes.
-   */
-  profile: baseUrl + 'profile',
-  'top-artists': baseUrl + 'top-artists',
-  'top-tracks': baseUrl + 'top-tracks',
-  recent: baseUrl + 'recent',
-  playlists: baseUrl + 'playlists',
-} as const;
