@@ -1,0 +1,54 @@
+export const LoadingSkeleton = () => (
+  <div className="absolute z-50 inset-0 items-center justify-center">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+      <rect
+        x="50"
+        y="50"
+        width="20"
+        height="100"
+        fill="#4CAF50"
+        className="animate-bars1"
+      />
+      <rect
+        x="100"
+        y="60"
+        width="20"
+        height="90"
+        fill="#4CAF50"
+        className="animate-bars2"
+      />
+      <rect
+        x="150"
+        y="40"
+        width="20"
+        height="120"
+        fill="#4CAF50"
+        className="animate-bars3"
+      />
+      <rect
+        x="200"
+        y="70"
+        width="20"
+        height="90"
+        fill="#4CAF50"
+        className="animate-bars4"
+      />
+      <rect
+        x="250"
+        y="55"
+        width="20"
+        height="110"
+        fill="#4CAF50"
+        className="animate-bars5"
+      />
+      <rect
+        x="300"
+        y="55"
+        width="20"
+        height="130"
+        fill="#4CAF50"
+        className="animate-bars6"
+      />
+    </svg>
+  </div>
+);

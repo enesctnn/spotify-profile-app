@@ -4,7 +4,7 @@ import { TopTracks } from './tracks/TopTracks';
 
 export function TopItems() {
   return (
-    <Card className="gap-4 sm:grid sm:grid-cols-2 ">
+    <Card className="gap-4 sm:grid sm:grid-cols-2" role="article">
       <TopArtists />
       <TopTracks />
     </Card>

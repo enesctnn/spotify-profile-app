@@ -1,5 +1,6 @@
 import { useTopTracks } from '../../../../hooks/useTopTracks';
 import { TrackListItem } from '../../../shared/TrackListItem';
+import { LoadingSkeleton } from '../../../ui/loading-skeleton';
 import { TopItemsList } from '../TopItemsList';
 
 export function TopTracks() {
@@ -7,6 +8,7 @@ export function TopTracks() {
 
   return (
     <TopItemsList path="top-tracks" title="Tracks">
+      {!topTracks && <LoadingSkeleton />}
       {topTracks &&
         topTracks.map(track => (
           <TrackListItem

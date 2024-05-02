@@ -3,6 +3,17 @@
 @tailwind utilities;
 
 @layer base {
+  ::-webkit-scrollbar {
+    @apply h-2 w-2 scroll-smooth bg-spotify-gray;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply rounded-md bg-spotify-gray-300;
+  }
+
+  div#card::-webkit-scrollbar {
+    @apply rounded-r-md;
+  }
   html {
     @apply h-full;
   }

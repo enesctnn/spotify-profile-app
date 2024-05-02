@@ -1,4 +1,5 @@
 import { useTopArtists } from '../../../hooks/useTopArtists';
+import { LoadingSkeleton } from '../../ui/loading-skeleton';
 import { TopArtistsListItem } from './TopArtistsListItem';
 
 export const TopArtistsList = ({
@@ -8,7 +9,8 @@ export const TopArtistsList = ({
 }) => {
   const topArtists = useTopArtists(timeRange);
   return (
-    <ul className="flex flex-wrap gap-x-20 gap-y-12">
+    <ul className="relative flex flex-wrap gap-x-20 gap-y-12">
+      {!topArtists && <LoadingSkeleton />}
       {topArtists &&
         topArtists.map(({ band_name, id, img }) => (
           <TopArtistsListItem key={id} id={id} img={img} title={band_name} />

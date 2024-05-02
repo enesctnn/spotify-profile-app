@@ -9,7 +9,7 @@ function TopArtistsPage() {
   >('long_term');
 
   return (
-    <Card className="space-y-10">
+    <Card className="space-y-10" maxHeightScreen role="article">
       <TopItemHeader
         title="Top Artists"
         selectedRange={timeRange}

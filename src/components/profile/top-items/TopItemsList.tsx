@@ -11,13 +11,13 @@ export const TopItemsList = ({
   title: 'Artists' | 'Tracks';
   children: React.ReactNode;
 }) => (
-  <article className="space-y-8">
+  <article className="space-y-8 min-h-96">
     <header className="flex items-center justify-between gap-1">
       <h1 className="text-xl font-bold">Top {title} of All Time</h1>
       <Link to={baseUrl + path}>
-        <Button className="text-xs px-4">See More</Button>
+        <Button className="px-4 text-xs">See More</Button>
       </Link>
     </header>
-    <ul className="space-y-1 ">{children}</ul>
+    <ul className="relative space-y-1">{children}</ul>
   </article>
 );

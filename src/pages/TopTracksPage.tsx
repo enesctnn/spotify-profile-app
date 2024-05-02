@@ -9,7 +9,7 @@ function TopTracksPage() {
   >('long_term');
 
   return (
-    <Card className="space-y-10" role="article">
+    <Card className="space-y-10" role="article" maxHeightScreen>
       <TopItemHeader
         onClick={setTimeRange}
         title="Top Tracks"
