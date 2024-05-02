@@ -3,7 +3,7 @@ import {
   SpotifyPlaylistResponse,
   SpotifyProfileResponse,
   SpotifyTopArtistsResponse,
-  SpotifyTopTracksResponse
+  SpotifyTopTracksResponse,
 } from '../@types/spotify.res';
 import spotifyAxios from './spotify-axios';
 

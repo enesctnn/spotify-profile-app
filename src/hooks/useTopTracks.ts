@@ -11,7 +11,7 @@ export function useTopTracks(
   if (!token) throw new Error('Missing token');
 
   const { data } = useQuery({
-    queryKey: ['user-top-tracks', token, time_range],
+    queryKey: ['user-top-tracks', token, time_range,limit],
     queryFn: ({ signal }) =>
       fetchUserTopTracks(token, time_range, signal, limit),
     enabled: !!token,

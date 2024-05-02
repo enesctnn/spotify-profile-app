@@ -17,6 +17,7 @@ export function TopTracks() {
             album_name={track.album_name}
             artists={track.artists}
             track_name={track.track_name}
+            duration={track.duration}
           />
         ))}
     </TopItemsList>

@@ -8,16 +8,16 @@ export const TopItemsList = ({
   children,
 }: {
   path: 'top-artists' | 'top-tracks';
-  title: string;
+  title: 'Artists' | 'Tracks';
   children: React.ReactNode;
 }) => (
   <article className="space-y-8">
-    <header className="flex items-center justify-between gap-2">
+    <header className="flex items-center justify-between gap-1">
       <h1 className="text-xl font-bold">Top {title} of All Time</h1>
       <Link to={baseUrl + path}>
-        <Button className="text-sm">See More</Button>
+        <Button className="text-xs px-4">See More</Button>
       </Link>
     </header>
-    <ul className="space-y-1">{children}</ul>
+    <ul className="space-y-1 ">{children}</ul>
   </article>
 );

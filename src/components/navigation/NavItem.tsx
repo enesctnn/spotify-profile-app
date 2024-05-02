@@ -30,7 +30,7 @@ export function NavItem({
       />
       <Link
         to={path}
-        className="h-full w-full p-2 text-center text-xs font-semibold leading-loose"
+        className="h-full w-full flex-col justify-evenly p-2 text-center text-xs font-semibold leading-loose max-md:flex"
       >
         <Icon className="w-full text-2xl md:text-3xl" />
         {title}

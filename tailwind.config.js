@@ -33,7 +33,7 @@ export default {
           '100%': { transform: 'scale(1)' },
         },
       },
-      animation: { bump: 'bump 0.5s' },
+      animation: { bump: 'bump 0.35s' },
     },
   },
   plugins: [],

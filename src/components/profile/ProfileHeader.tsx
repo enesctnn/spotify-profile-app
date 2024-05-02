@@ -33,7 +33,7 @@ export const ProfileHeader = ({
         target="_blank"
         title="Open Spotify"
       >
-        <h1 className="truncate pb-2 text-5xl">{user_name}</h1>
+        <h1 className="truncate pb-2 text-lg sm:text-5xl">{user_name}</h1>
       </a>
       <Button onClick={logout}>Logout</Button>
     </header>

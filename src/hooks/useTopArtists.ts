@@ -10,7 +10,7 @@ export function useTopArtists(
   if (!token) throw new Error('Missing token');
 
   const { data } = useQuery({
-    queryKey: ['user-top-artists', token, time_range],
+    queryKey: ['user-top-artists', token, time_range, limit],
     queryFn: ({ signal }) =>
       fetchUserTopArtists(token, time_range, signal, limit),
     enabled: !!token,
