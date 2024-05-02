@@ -1,1 +1,1 @@
-export const baseUrl = '/spotify-profile-app';
+export const baseUrl = '/spotify-profile-app/';

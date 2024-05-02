@@ -5,7 +5,7 @@ export function useLogout() {
   const submit = useSubmit();
 
   const logout = () => {
-    submit(null, { action: `${baseUrl}/logout`, method: 'post' });
+    submit(null, { action: `${baseUrl}logout`, method: 'post' });
   };
 
   return logout;

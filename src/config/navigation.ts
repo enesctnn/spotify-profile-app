@@ -7,27 +7,27 @@ import { baseUrl } from './baseUrl';
 
 export const NAV_ITEMS: { path: string; title: string; icon: IconType }[] = [
   {
-    path: `${baseUrl}/profile`,
+    path: `${baseUrl}profile`,
     title: 'Profile',
     icon: FaRegUserCircle,
   },
   {
-    path: `${baseUrl}/top-artists`,
+    path: `${baseUrl}top-artists`,
     title: 'Top Artists',
     icon: PiMicrophoneStageLight,
   },
   {
-    path: `${baseUrl}/top-tracks`,
+    path: `${baseUrl}top-tracks`,
     title: 'Top Tracks',
     icon: GiMusicalNotes,
   },
   {
-    path: `${baseUrl}/recent`,
+    path: `${baseUrl}recent`,
     title: 'Recent',
     icon: FaHistory,
   },
   {
-    path: `${baseUrl}/playlists`,
+    path: `${baseUrl}playlists`,
     title: 'Playlists',
     icon: PiPlaylistFill,
   },

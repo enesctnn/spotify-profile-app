@@ -1,9 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
-import { useRouteLoaderData } from 'react-router-dom';
 import { fetchUserProfileDetails } from '../util/http-spotify';
 
 export function useUserDetails() {
-  const token = useRouteLoaderData('user-details-root') as string;
+  const token = localStorage.getItem('token');
+
+  if (!token) throw new Error('Missing token');
 
   const { data } = useQuery({
     queryKey: ['user-details', token],

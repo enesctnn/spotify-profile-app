@@ -6,11 +6,12 @@ import {
 import { action as logoutAction } from '../actions/Logout';
 import ErrorPage from '../pages/ErrorPage';
 
+import { loader as wrongNavigationLoader } from '../actions/WrongNavigation';
+import { baseUrl } from '../config/baseUrl';
 import UserDetailsRoot from '../layouts/UserDetailsRoot';
 import LoginPage from '../pages/LoginPage';
 import UserProfilePage from '../pages/UserProfilePage';
 import { checkTokenLoader, tokenLoader } from '../ui/auth';
-import { baseUrl } from '../config/baseUrl';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -28,6 +29,7 @@ const router = createBrowserRouter(
         <Route path="playlists" />
       </Route>
       <Route path="logout" action={logoutAction} />
+      <Route path="*" loader={wrongNavigationLoader} />
     </Route>
   )
 );
@@ -38,13 +40,13 @@ export const routes = {
   /**
    * Login route.
    */
-  login: '/',
+  login: baseUrl,
   /**
-   * User details.
+   * User detail routes.
    */
-  profile: '/profile',
-  'top-artists': '/top-artists',
-  'top-tracks': '/top-tracks',
-  recent: '/recent',
-  playlists: '/playlists',
+  profile: baseUrl + 'profile',
+  'top-artists': baseUrl + 'top-artists',
+  'top-tracks': baseUrl + 'top-tracks',
+  recent: baseUrl + 'recent',
+  playlists: baseUrl + 'playlists',
 } as const;

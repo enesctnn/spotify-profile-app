@@ -1,23 +1,28 @@
 import { AxiosError } from 'axios';
 import { useRouteError } from 'react-router-dom';
+import { Card } from '../components/ui/card';
+import { HomeButton } from '../components/error/HomeButton';
 
 function ErrorPage() {
   const error = useRouteError();
-  let message = 'Something went wrong!';
+  let message = 'An error occured!\nSpotify Profile App crashed!';
 
   if (error instanceof Error || error instanceof AxiosError)
     message = error.message;
 
   return (
-    <div className="flex justify-center text-red-600">
-      <div className="shadow-spotify-gray-300 mt-40 rounded-sm bg-red-400 p-10 shadow-md">
+    <div className="absolute inset-0 flex items-center justify-center bg-ellipse from-spotify-gray-300 to-spotify-gray to-35%">
+      <Card className="flex h-max w-max flex-col items-center gap-10 bg-ellipse from-red-600 to-red-800">
         <header>
           <h1 className="text-4xl font-bold capitalize">
             Something went wrong!
           </h1>
         </header>
-        <p> {message}</p>
-      </div>
+        <p className="whitespace-pre-line text-center text-lg font-semibold">
+          {message}
+        </p>
+        <HomeButton />
+      </Card>
     </div>
   );
 }

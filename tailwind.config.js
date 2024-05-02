@@ -24,6 +24,16 @@ export default {
         border: '0px 0px 2px rgba(0, 0, 0, 0.6)',
         'white-border': '0px 0px 2px rgba(255, 255, 255, 0.6)',
       },
+      keyframes: {
+        bump: {
+          '0%': { transform: 'scale(1)' },
+          '10%': { transform: 'scale(0.8)' },
+          '30%': { transform: 'scale(1.1)' },
+          '50%': { transform: 'scale(1.3)' },
+          '100%': { transform: 'scale(1)' },
+        },
+      },
+      animation: { bump: 'bump 0.5s' },
     },
   },
   plugins: [],

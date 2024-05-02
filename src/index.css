@@ -7,9 +7,12 @@
     @apply h-full;
   }
   body {
-    @apply relative h-full font-montserrat tracking-wide antialiased;
+    @apply relative h-full font-montserrat tracking-wide text-white antialiased;
   }
   main#root {
-    @apply relative flex min-h-screen justify-evenly bg-black text-white;
+    @apply relative flex min-h-screen min-w-min justify-evenly bg-black;
+  }
+  nav#navroot {
+    @apply fixed z-50 flex items-center justify-between bg-spotify-gray max-md:bottom-0 max-md:h-max max-md:w-full md:left-0 md:h-full md:w-24 md:flex-col md:py-6;
   }
 }

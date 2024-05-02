@@ -1,4 +1,4 @@
-import { useState, useEffect, Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
 /**
  * Custom React hook for managing state in local storage.
@@ -8,13 +8,13 @@ import { useState, useEffect, Dispatch, SetStateAction } from "react";
  */
 export const useLocalStorage = <T>(
   key: string,
-  defaultValue: T,
+  defaultValue: T
 ): [T, Dispatch<SetStateAction<T>>] => {
   const [values, setValues] = useState<T>(() => {
     let currentValue;
     try {
       currentValue = JSON.parse(
-        localStorage.getItem(key) || String(defaultValue),
+        localStorage.getItem(key) || String(defaultValue)
       );
     } catch {
       currentValue = defaultValue;
@@ -24,7 +24,7 @@ export const useLocalStorage = <T>(
 
   useEffect(
     () => localStorage.setItem(key, JSON.stringify(values)),
-    [values, key],
+    [values, key]
   );
 
   return [values, setValues];

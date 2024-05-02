@@ -44,7 +44,7 @@ export function tokenLoader() {
       localStorage.setItem('token', String(tkn));
     }
   }
-  if (token) return redirect(`${baseUrl}/profile`);
+  if (token) return redirect(`${baseUrl}profile`);
 
   return token;
 }

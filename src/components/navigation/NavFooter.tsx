@@ -4,7 +4,7 @@ export const NavFooter = () => (
   <footer>
     <a
       href="https://github.com/enesctnn/spotify-profile-app"
-      className="hidden h-max w-max md:block"
+      className="hidden h-max w-max transition-colors hover:text-spotify-green md:block"
       target="_blank"
       title="Github"
     >

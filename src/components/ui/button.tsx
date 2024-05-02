@@ -1,17 +1,16 @@
 import * as React from 'react';
 import { cn } from '../../lib/utils';
 
-export function Button({
-  className,
-  ...props
-}: React.ButtonHTMLAttributes<HTMLButtonElement>) {
-  return (
-    <button
-      {...props}
-      className={cn(
-        'text-md whitespace-nowrap rounded-full bg-spotify-green/80 px-7 py-3 text-center font-bold text-white shadow-md transition-all hover:bg-spotify-green',
-        className
-      )}
-    />
-  );
-}
+export const Button = React.forwardRef<
+  HTMLButtonElement,
+  React.ButtonHTMLAttributes<HTMLButtonElement>
+>(({ className, ...props }, ref) => (
+  <button
+    {...props}
+    ref={ref}
+    className={cn(
+      'text-md whitespace-nowrap rounded-full border bg-spotify-gray px-7 py-3 text-center text-lg font-bold text-white shadow-md transition-all duration-500 hover:bg-white hover:text-black',
+      className
+    )}
+  />
+));

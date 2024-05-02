@@ -15,7 +15,7 @@ function UserDetailsRoot() {
   return (
     <>
       <Navbar />
-      <div className="h-full w-full px-2 py-2 md:ml-24">
+      <div className="h-full w-full space-y-2 px-2 py-2 md:ml-24">
         <Outlet />
       </div>
     </>
