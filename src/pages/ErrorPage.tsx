@@ -11,7 +11,7 @@ function ErrorPage() {
     message = error.message;
 
   return (
-    <div className="absolute inset-0 flex items-center justify-center bg-ellipse from-spotify-gray-300 to-spotify-gray to-35%">
+    <div className="absolute inset-0 z-50 flex items-center justify-center bg-ellipse from-spotify-gray-300 to-spotify-gray to-35%">
       <Card className="flex h-max w-max flex-col items-center gap-10 bg-ellipse from-red-600 to-red-800 p-5">
         <header>
           <h1 className="text-4xl font-bold capitalize">

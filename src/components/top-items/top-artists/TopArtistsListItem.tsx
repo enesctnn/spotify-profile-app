@@ -10,8 +10,8 @@ export const TopArtistsListItem = ({
   id: string;
   title: string;
 }) => (
-  <PathLink className="mx-auto w-40 space-y-4" path="artists" id={id}>
-    <div className="relative h-40 w-full animate-bump overflow-hidden rounded-full">
+  <PathLink className="mx-auto w-28 space-y-4 sm:w-40" path="artists" id={id}>
+    <div className="relative h-28 w-full animate-bump overflow-hidden rounded-full sm:h-40">
       <span className="absolute inset-0 flex items-center justify-center bg-spotify-gray/65 opacity-0 transition-opacity hover:opacity-100">
         <FaInfoCircle size={30} />
       </span>

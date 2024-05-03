@@ -10,7 +10,7 @@ export const LoadingSkeleton = () => (
         y="50"
         width="20"
         height="100"
-        fill="#4CAF50"
+        fill="#535353"
         className="animate-bars1"
       />
       <rect
@@ -18,7 +18,7 @@ export const LoadingSkeleton = () => (
         y="60"
         width="20"
         height="90"
-        fill="#4CAF50"
+        fill="#535353"
         className="animate-bars2"
       />
       <rect
@@ -26,7 +26,7 @@ export const LoadingSkeleton = () => (
         y="40"
         width="20"
         height="120"
-        fill="#4CAF50"
+        fill="#535353"
         className="animate-bars3"
       />
       <rect
@@ -34,7 +34,7 @@ export const LoadingSkeleton = () => (
         y="70"
         width="20"
         height="90"
-        fill="#4CAF50"
+        fill="#535353"
         className="animate-bars4"
       />
       <rect
@@ -42,7 +42,7 @@ export const LoadingSkeleton = () => (
         y="55"
         width="20"
         height="110"
-        fill="#4CAF50"
+        fill="#535353"
         className="animate-bars5"
       />
       <rect
@@ -50,7 +50,7 @@ export const LoadingSkeleton = () => (
         y="55"
         width="20"
         height="130"
-        fill="#4CAF50"
+        fill="#535353"
         className="animate-bars6"
       />
     </svg>

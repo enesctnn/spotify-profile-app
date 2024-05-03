@@ -17,6 +17,7 @@ import UserProfilePage from '../pages/UserProfilePage';
 import { checkTokenLoader, tokenLoader } from '../ui/auth';
 import MaxHeightItemsLayout from '../layouts/MaxHeightItemsLayout';
 import RecentPage from '../pages/RecentPage';
+import ArtistPage from '../pages/ArtistPage';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -35,8 +36,8 @@ const router = createBrowserRouter(
           <Route path="playlists" element={<PlaylistsPage />}>
             <Route path=":id" />
           </Route>
+          <Route path="artists/:id" element={<ArtistPage />} />
           <Route path="tracks/:id" />
-          <Route path="artists/:id" />
         </Route>
       </Route>
       <Route path="logout" action={logoutAction} />

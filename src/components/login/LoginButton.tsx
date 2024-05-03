@@ -12,7 +12,7 @@ export function LoginButton() {
       <a
         href={`${AUTH_ENDPOINT}?response_type=token&client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&scope=${SCOPE}`}
       >
-        LOG IN TO SPOTIFY
+        LOG IN TO SPOTIFY <span className="ms-1 text-2xl">ᯤ</span>
       </a>
     </Button>
   );

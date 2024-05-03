@@ -1,11 +1,14 @@
 import { AxiosError } from 'axios';
 import {
-  SpotifyPlaylistResponse,
+  SpotifyArtistResponse,
   SpotifyProfileResponse,
   SpotifyRecentlyPlayedResponse,
   SpotifyTopArtistsResponse,
   SpotifyTopTracksResponse,
+  SpotifyTrackResponse,
+  SpotifyUserPlaylistResponse,
 } from '../@types/spotify.res';
+
 import spotifyAxios from './spotify-axios';
 
 export async function fetchUserProfileDetails(
@@ -76,7 +79,7 @@ export async function fetchUserPlaylists(
   authorizationToken: string,
   signal?: AbortSignal,
   limit = 50
-): Promise<SpotifyPlaylistResponse> {
+): Promise<SpotifyUserPlaylistResponse> {
   try {
     const res = await spotifyAxios.get(`me/playlists?limit=${limit}`, {
       headers: {
@@ -90,6 +93,7 @@ export async function fetchUserPlaylists(
     throw new Error('Something went wrong while fetching user playlists!');
   }
 }
+
 export async function fetchUserRecentlyPlayed(
   authorizationToken: string,
   signal?: AbortSignal,
@@ -108,6 +112,65 @@ export async function fetchUserRecentlyPlayed(
     return res.data;
   } catch (error) {
     if (error instanceof AxiosError) throw new Error(error.message);
-    throw new Error('Something went wrong while fetching user playlists!');
+    throw new Error(
+      'Something went wrong while fetching user recently played!'
+    );
+  }
+}
+
+export async function fetchArtistById(
+  authorizationToken: string,
+  id: string,
+  signal?: AbortSignal
+): Promise<SpotifyArtistResponse> {
+  try {
+    const res = await spotifyAxios.get(`artists/${id}`, {
+      headers: {
+        Authorization: `Bearer ${authorizationToken}`,
+      },
+      signal,
+    });
+    return res.data;
+  } catch (error) {
+    if (error instanceof AxiosError) throw new Error(error.message);
+    throw new Error('Something went wrong while fetching artist!');
+  }
+}
+
+export async function fetchTrackById(
+  authorizationToken: string,
+  id: string,
+  signal?: AbortSignal
+): Promise<SpotifyTrackResponse> {
+  try {
+    const res = await spotifyAxios.get(`tracks/${id}`, {
+      headers: {
+        Authorization: `Bearer ${authorizationToken}`,
+      },
+      signal,
+    });
+    return res.data;
+  } catch (error) {
+    if (error instanceof AxiosError) throw new Error(error.message);
+    throw new Error('Something went wrong while fetching artist!');
+  }
+}
+
+export async function fetchPlaylistById(
+  authorizationToken: string,
+  id: string,
+  signal?: AbortSignal
+): Promise<SpotifyTrackResponse> {
+  try {
+    const res = await spotifyAxios.get(`playlists/${id}`, {
+      headers: {
+        Authorization: `Bearer ${authorizationToken}`,
+      },
+      signal,
+    });
+    return res.data;
+  } catch (error) {
+    if (error instanceof AxiosError) throw new Error(error.message);
+    throw new Error('Something went wrong while fetching artist!');
   }
 }
