@@ -10,7 +10,7 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(
     <div
       {...props}
       ref={ref}
-      className={`relative w-full overflow-y-auto rounded-md bg-spotify-gray px-10 py-6 ${maxHeightScreen ? ' h-full' : ''}`}
+      className={`w-full overflow-y-auto rounded-md bg-spotify-gray px-10 py-6 ${maxHeightScreen ? ' h-full' : ''}`}
       id="card"
     >
       <MaxWidthWrapper className={className}>{children}</MaxWidthWrapper>

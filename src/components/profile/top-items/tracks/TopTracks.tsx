@@ -1,5 +1,5 @@
 import { useTopTracks } from '../../../../hooks/useTopTracks';
-import { TrackListItem } from '../../../shared/TrackListItem';
+import { TopListItem } from '../../../shared/TopListItem';
 import { LoadingSkeleton } from '../../../ui/loading-skeleton';
 import { TopItemsList } from '../TopItemsList';
 
@@ -11,7 +11,7 @@ export function TopTracks() {
       {!topTracks && <LoadingSkeleton />}
       {topTracks &&
         topTracks.map(track => (
-          <TrackListItem
+          <TopListItem
             key={track.id}
             id={track.id}
             img={track.img}

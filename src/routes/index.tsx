@@ -16,6 +16,7 @@ import TopTracksPage from '../pages/TopTracksPage';
 import UserProfilePage from '../pages/UserProfilePage';
 import { checkTokenLoader, tokenLoader } from '../ui/auth';
 import MaxHeightItemsLayout from '../layouts/MaxHeightItemsLayout';
+import RecentPage from '../pages/RecentPage';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -27,11 +28,10 @@ const router = createBrowserRouter(
         id="user-details-root"
       >
         <Route index path="profile" element={<UserProfilePage />} />
-
         <Route element={<MaxHeightItemsLayout />}>
           <Route path="top-artists" element={<TopArtistsPage />} />
           <Route path="top-tracks" element={<TopTracksPage />} />
-          <Route path="recent" />
+          <Route path="recent" element={<RecentPage />} />
           <Route path="playlists" element={<PlaylistsPage />}>
             <Route path=":id" />
           </Route>

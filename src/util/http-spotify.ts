@@ -2,6 +2,7 @@ import { AxiosError } from 'axios';
 import {
   SpotifyPlaylistResponse,
   SpotifyProfileResponse,
+  SpotifyRecentlyPlayedResponse,
   SpotifyTopArtistsResponse,
   SpotifyTopTracksResponse,
 } from '../@types/spotify.res';
@@ -92,8 +93,8 @@ export async function fetchUserPlaylists(
 export async function fetchUserRecentlyPlayed(
   authorizationToken: string,
   signal?: AbortSignal,
-  limit = 15
-): Promise<SpotifyPlaylistResponse> {
+  limit = 50
+): Promise<SpotifyRecentlyPlayedResponse> {
   try {
     const res = await spotifyAxios.get(
       `me/player/recently-played?limit=${limit}`,

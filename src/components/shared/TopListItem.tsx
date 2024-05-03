@@ -1,8 +1,7 @@
 import { FaInfoCircle } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
-import { baseUrl } from '../../config/baseUrl';
+import { PathLink } from './PathLink';
 
-export const TrackListItem = ({
+export const TopListItem = ({
   id,
   img,
   item_type,
@@ -29,8 +28,9 @@ export const TrackListItem = ({
       className
     }
   >
-    <Link
-      to={baseUrl + item_type + '/' + id}
+    <PathLink
+      path={item_type}
+      id={id}
       className="flex shrink items-center gap-5 overflow-hidden px-5 py-3"
     >
       <div
@@ -44,6 +44,7 @@ export const TrackListItem = ({
           src={img}
           alt={title + ' named music band picture'}
           className="object-cover object-center"
+          loading="lazy"
         />
       </div>
       {title && (
@@ -52,9 +53,9 @@ export const TrackListItem = ({
         </p>
       )}
       {artists && track_name && album_name && (
-        <article className="w-full overflow-hidden font-semibold">
-          <h2 className="truncate text-sm">{track_name}</h2>
-          <p className="truncate text-xs text-spotify-gray-100">
+        <article className="min-w-24 font-semibold">
+          <h2 className="w-full text-sm">{track_name}</h2>
+          <p className="w-full text-xs text-spotify-gray-100">
             {artists.join('-')} · {album_name}
           </p>
         </article>
@@ -67,6 +68,6 @@ export const TrackListItem = ({
           {duration}
         </div>
       )}
-    </Link>
+    </PathLink>
   </li>
 );

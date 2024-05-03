@@ -1,9 +1,7 @@
-import { Link } from 'react-router-dom';
-
 import { useUserDetails } from '../../hooks/useUserDetails';
 import { useUserPlaylists } from '../../hooks/useUserPlaylists';
 
-import { baseUrl } from '../../config/baseUrl';
+import { PathLink } from '../shared/PathLink';
 import { Card } from '../ui/card';
 import { ProfileDetailItems } from './ProfileDetailItems';
 import { ProfileHeader } from './ProfileHeader';
@@ -25,15 +23,15 @@ export function ProfileArticle() {
         <div className="flex items-center justify-center gap-5">
           <ProfileDetailItems title="Followers" count={userData.followers} />
           {playlistsData && (
-            <Link
-              to={`${baseUrl}playlists`}
+            <PathLink
+              path="playlists"
               className="transition-transform hover:scale-110"
             >
               <ProfileDetailItems
                 title="Playlists"
                 count={playlistsData.playlist_count}
               />
-            </Link>
+            </PathLink>
           )}
         </div>
       </Card>

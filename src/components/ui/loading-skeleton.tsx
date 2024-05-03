@@ -1,6 +1,10 @@
 export const LoadingSkeleton = () => (
-  <div className="absolute z-50 inset-0 items-center justify-center">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <div className="h-full w-full">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 400 250"
+      className="mx-auto h-72 w-80"
+    >
       <rect
         x="50"
         y="50"

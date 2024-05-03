@@ -1,17 +1,17 @@
 import { useTopArtists } from '../../../../hooks/useTopArtists';
-import { TrackListItem } from '../../../shared/TrackListItem';
+import { TopListItem } from '../../../shared/TopListItem';
 import { LoadingSkeleton } from '../../../ui/loading-skeleton';
 import { TopItemsList } from '../TopItemsList';
 
 export function TopArtists() {
   const topArtists = useTopArtists('long_term', 10);
 
-  return (
-    <TopItemsList path="top-artists" title="Artists">
+  return (<>
       {!topArtists && <LoadingSkeleton />}
+    <TopItemsList path="top-artists" title="Artists">
       {topArtists &&
         topArtists.map(({ id, band_name, img }) => (
-          <TrackListItem
+          <TopListItem
             key={id}
             id={id}
             img={img}
@@ -20,5 +20,6 @@ export function TopArtists() {
           />
         ))}
     </TopItemsList>
+    </>
   );
 }
