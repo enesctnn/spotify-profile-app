@@ -51,7 +51,6 @@ npm install
 ```plaintext
 VITE_CLIENT_ID=your_client_id
 VITE_CLIENT_SECRET=your_client_secret
-REACT_APP_REDIRECT_URI=http://localhost:5173/
 ```
 
 5. Start the development server:
@@ -76,7 +75,3 @@ Contributions are welcome! Feel free to open an issue or submit a pull request.
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-```
-
-Feel free to customize it further according to your project's specific requirements!
-```
