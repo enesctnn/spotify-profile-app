@@ -3,7 +3,7 @@ import { TopListItem } from '../../../shared/TopListItem';
 import { LoadingSkeleton } from '../../../ui/loading-skeleton';
 import { TopItemsList } from '../TopItemsList';
 
-export function TopTracks() {
+export function TopTracksAllTime() {
   const topTracks = useTopTracks('long_term', 10);
 
   return (

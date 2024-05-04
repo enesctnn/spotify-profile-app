@@ -7,7 +7,7 @@ export function useArtistById(id: string) {
   if (!token) throw new Error('Missing token!');
 
   const { data } = useQuery({
-    queryKey: ['artist', id],
+    queryKey: ['artist', token, id],
     queryFn: ({ signal }) => fetchArtistById(token, id, signal),
   });
 

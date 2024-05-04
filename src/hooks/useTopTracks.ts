@@ -15,26 +15,31 @@ export function useTopTracks(
     queryFn: ({ signal }) =>
       fetchUserTopTracks(token, time_range, signal, limit),
   });
+  
   const userTopTracks: {
     id: string;
     track_name: string;
     album_name: string;
     img: string;
     duration: string;
-    artists: string[];
+    artists: { [key: string]: string };
   }[] = [];
 
   if (data) {
-    data.items.forEach(item =>
+    data.items.forEach(item => {
+      const artists: { [key: string]: string } = {};
+      item.album.artists.forEach(artist => {
+        artists[artist.name] = artist.id;
+      });
       userTopTracks.push({
         id: item.id,
         track_name: item.name,
         album_name: item.album.name,
         img: item.album.images[0].url,
         duration: getMinutesFromMiliseconds(item.duration_ms),
-        artists: item.album.artists.map(artist => artist.name),
-      })
-    );
+        artists,
+      });
+    });
     return userTopTracks;
   }
 

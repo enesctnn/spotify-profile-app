@@ -7,21 +7,28 @@ export function useTrackById(id: string) {
   if (!token) throw new Error('Missing token!');
 
   const { data } = useQuery({
-    queryKey: ['artist', id],
+    queryKey: ['track', token, id],
     queryFn: ({ signal }) => fetchTrackById(token, id, signal),
   });
 
   if (data) {
+    const artists: { [key: string]: string } = {};
+    data.artists.forEach(artist => {
+      const name = artist.name;
+      const id = artist.id;
+      artists[name] = id;
+    });
+
     return {
       track_name: data.name,
       album_name: data.album.name,
-      artists: data.artists.map(artist => artist.name),
+      artists,
       spotify_url: data.external_urls.spotify,
       popularity: data.popularity,
       preview_url: data.preview_url,
-      album_id: data.album.id,
       release_year: data.album.release_date.slice(0, 4),
       img: data.album.images[0].url,
+      album_id: data.album.id,
     };
   }
 

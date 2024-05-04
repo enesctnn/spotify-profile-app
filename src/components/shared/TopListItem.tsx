@@ -16,7 +16,7 @@ export const TopListItem = ({
   img: string;
   item_type: 'artists' | 'tracks';
   title?: string;
-  artists?: string[];
+  artists?: { [key: string]: string };
   album_name?: string;
   track_name?: string;
   duration?: string;
@@ -28,14 +28,12 @@ export const TopListItem = ({
       className
     }
   >
-    <PathLink
-      path={item_type}
-      id={id}
-      className="flex shrink items-center gap-5 overflow-hidden px-5 py-3"
-    >
-      <div
+    <div className="flex items-center gap-5 overflow-hidden px-5 py-3">
+      <PathLink
+        path={item_type}
+        id={id}
         className={`relative h-16 w-16 max-w-full shrink-0 overflow-hidden
-          ${item_type === 'artists' ? ' rounded-full' : ''}`}
+            ${item_type === 'artists' ? ' rounded-full' : ''}`}
       >
         <span className="absolute inset-0 flex items-center justify-center bg-spotify-gray/65 opacity-0 transition-opacity group-hover:opacity-100">
           <FaInfoCircle size={24} />
@@ -46,17 +44,34 @@ export const TopListItem = ({
           className="object-cover object-center"
           loading="lazy"
         />
-      </div>
+      </PathLink>
       {title && (
-        <p className="text-sm font-semibold transition-colors hover:underline group-hover:text-black">
-          {title}
-        </p>
+        <PathLink path={item_type} id={id}>
+          <p className="text-sm font-semibold transition-colors hover:underline group-hover:text-black">
+            {title}
+          </p>
+        </PathLink>
       )}
       {artists && track_name && album_name && (
         <article className="min-w-24 font-semibold">
-          <h2 className="w-full text-sm">{track_name}</h2>
-          <p className="w-full text-xs text-spotify-gray-100">
-            {artists.join('-')} · {album_name}
+          <PathLink path={item_type} id={id} className="hover:underline">
+            <h2 className="w-full text-sm">{track_name}</h2>
+          </PathLink>
+          <p className="z-10 w-full text-xs text-spotify-gray-100">
+            {Object.keys(artists)
+              .join(' - ,')
+              .split(',')
+              .map(name => (
+                <PathLink
+                  key={name}
+                  path="artists"
+                  id={artists[name]}
+                  className="hover:underline"
+                >
+                  {name}
+                </PathLink>
+              ))}{' '}
+            · {album_name}
           </p>
         </article>
       )}
@@ -68,6 +83,6 @@ export const TopListItem = ({
           {duration}
         </div>
       )}
-    </PathLink>
+    </div>
   </li>
 );

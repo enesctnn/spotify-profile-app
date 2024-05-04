@@ -5,6 +5,7 @@ import {
   SpotifyRecentlyPlayedResponse,
   SpotifyTopArtistsResponse,
   SpotifyTopTracksResponse,
+  SpotifyTrackAnalysisResponse,
   SpotifyTrackResponse,
   SpotifyUserPlaylistResponse,
 } from '../@types/spotify.res';
@@ -171,6 +172,25 @@ export async function fetchPlaylistById(
     return res.data;
   } catch (error) {
     if (error instanceof AxiosError) throw new Error(error.message);
-    throw new Error('Something went wrong while fetching artist!');
+    throw new Error('Something went wrong while fetching playlist!');
+  }
+}
+
+export async function fetchTrackAnalysis(
+  authorizationToken: string,
+  id: string,
+  signal?: AbortSignal
+): Promise<SpotifyTrackAnalysisResponse> {
+  try {
+    const res = await spotifyAxios.get(`audio-features/${id}`, {
+      headers: {
+        Authorization: `Bearer ${authorizationToken}`,
+      },
+      signal,
+    });
+    return res.data;
+  } catch (error) {
+    if (error instanceof AxiosError) throw new Error(error.message);
+    throw new Error('Something went wrong while fetching track analysis!');
   }
 }
