@@ -1,24 +1,65 @@
 import { useQuery } from '@tanstack/react-query';
+import { getMinutesFromMiliseconds } from '../lib/time';
 import { getAuthToken } from '../ui/auth';
 import { fetchPlaylistById } from '../util/http-spotify';
 
-export function useArtistById(id: string) {
+export function usePlaylistById(id: string) {
   const token = getAuthToken();
   if (!token) throw new Error('Missing token!');
 
   const { data } = useQuery({
-    queryKey: ['artist', token, id],
+    queryKey: ['playlist', token, id],
     queryFn: ({ signal }) => fetchPlaylistById(token, id, signal),
   });
 
-  if (data) 
-    return {
+  const playlistTracks: {
+    id: string;
+    track_name: string;
+    album_name: string;
+    img: string;
+    duration: string;
+    artists: { [key: string]: string };
+  }[] = [];
+
+  if (data) {
+    if (data.tracks) {
+      data.tracks.items.forEach(item => {
+        if (
+          item.track &&
+          item.track.name &&
+          item.track.id &&
+          item.track.album &&
+          item.track.artists
+        ) {
+          const artists: { [key: string]: string } = {};
+          item.track.artists.forEach(artist => {
+            const name = artist.name;
+            const id = artist.id;
+            artists[name] = id;
+          });
+          playlistTracks.push({
+            id: item.track.id,
+            track_name: item.track.name,
+            album_name: item.track.album.name,
+            img: item.track.album.images[0].url,
+            duration: getMinutesFromMiliseconds(item.track.duration_ms),
+            artists,
+          });
+        }
+      });
+    }
+
+    const playListFeatures = {
       name: data.name,
-      total: data.album.total_tracks,
+      total: data.tracks.total,
       spotify_url: data.external_urls.spotify,
-      img: data.album.images[0].url,
+      img: data.images[0].url,
+      owner: data.owner.display_name,
+      description: data.description,
     };
-  
+
+    return { playListFeatures, playlistTracks };
+  }
 
   return null;
 }

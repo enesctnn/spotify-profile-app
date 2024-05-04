@@ -11,18 +11,24 @@
     @apply rounded-md bg-spotify-gray-300;
   }
 
-  input[type='range']::-webkit-slider-thumb {
-    @apply hover:cursor-pointer hover:opacity-100;
-  }
-
-  div#card::-webkit-scrollbar {
-    @apply rounded-r-md;
-  }
   html {
     @apply h-full;
   }
   body {
     @apply relative h-full font-montserrat tracking-wide text-white antialiased;
+  }
+}
+
+@layer components {
+  input[type='range']::-webkit-slider-thumb {
+    @apply hover:cursor-pointer hover:opacity-100;
+  }
+  div#card::-webkit-scrollbar {
+    @apply rounded-r-md;
+  }
+
+  ul#card::-webkit-scrollbar {
+    @apply bg-transparent;
   }
   main#root {
     @apply relative flex min-h-screen min-w-min justify-evenly bg-black;

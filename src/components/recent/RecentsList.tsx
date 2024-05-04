@@ -4,11 +4,11 @@ import { LoadingSkeleton } from '../ui/loading-skeleton';
 
 export function RecentsList() {
   const recentlyPlayedData = useRecentlyPlayed();
-  
+
   return (
     <>
       {!recentlyPlayedData && <LoadingSkeleton />}
-      <ul className="space-y-5 ">
+      <ul className="space-y-2">
         {recentlyPlayedData &&
           recentlyPlayedData.map(
             ({

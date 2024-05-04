@@ -1,6 +1,5 @@
 import { AxiosError } from 'axios';
 import { useRouteError } from 'react-router-dom';
-import { Card } from '../components/ui/card';
 import { HomeButton } from '../components/error/HomeButton';
 
 function ErrorPage() {
@@ -12,7 +11,7 @@ function ErrorPage() {
 
   return (
     <div className="absolute inset-0 z-50 flex items-center justify-center bg-ellipse from-spotify-gray-300 to-spotify-gray to-35%">
-      <Card className="flex h-max w-max flex-col items-center gap-10 bg-ellipse from-red-600 to-red-800 p-5">
+      <div className="flex h-max w-max max-w-full flex-col items-center gap-10 rounded-md bg-ellipse from-red-600 to-red-800 p-10">
         <header>
           <h1 className="text-4xl font-bold capitalize">
             Something went wrong!
@@ -22,7 +21,7 @@ function ErrorPage() {
           {message}
         </p>
         <HomeButton />
-      </Card>
+      </div>
     </div>
   );
 }

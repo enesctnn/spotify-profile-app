@@ -1,6 +1,7 @@
 import { AxiosError } from 'axios';
 import {
   SpotifyArtistResponse,
+  SpotifyPlaylistResponseById,
   SpotifyProfileResponse,
   SpotifyRecentlyPlayedResponse,
   SpotifyTopArtistsResponse,
@@ -161,7 +162,7 @@ export async function fetchPlaylistById(
   authorizationToken: string,
   id: string,
   signal?: AbortSignal
-): Promise<SpotifyTrackResponse> {
+): Promise<SpotifyPlaylistResponseById> {
   try {
     const res = await spotifyAxios.get(`playlists/${id}`, {
       headers: {

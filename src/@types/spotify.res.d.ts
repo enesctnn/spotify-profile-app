@@ -244,7 +244,7 @@ export interface SpotifyTrackResponse {
 
 export interface SpotifyPlaylistResponseById {
   collaborative: boolean;
-  description: string;
+  description: string | null;
   external_urls: ExternalUrls;
   followers: Followers;
   href: string;
@@ -261,40 +261,18 @@ export interface SpotifyPlaylistResponseById {
     offset: number;
     previous: string;
     total: number;
-    items: Track[];
+    items: SpotifyPlaylistTrackResponseByIdItem[];
   };
   type: string;
   uri: string;
 }
 
-interface Track {
-  added_at: string;
-  added_by: Owner;
-  is_local: boolean;
-  track: {
-    album: Album;
-    artists: SpotifyArtist[];
-    available_markets: string[];
-    disc_number: number;
-    duration_ms: number;
-    explicit: boolean;
-    external_ids: ExternalIds;
-    external_urls: ExternalUrls;
-    href: string;
-    id: string;
-    is_playable: boolean;
-    linked_from: { [key: string]: string };
-    restrictions: {
-      reason: string;
-    };
-    name: string;
-    popularity: number;
-    preview_url: string | null;
-    track_number: number;
-    type: string;
-    uri: string;
-    is_local: boolean;
-  };
+interface SpotifyPlaylistTrackResponseByIdItem {
+  added_at: string | null;
+  added_by: SpotifyPlaylistOwner | null;
+  is_local: boolean | null;
+  track: SpotifyTrackResponse | null;
+  video_thumbnail: string | null;
 }
 
 export interface SpotifyTrackAnalysisResponse {

@@ -52,6 +52,9 @@ export default {
         bars5: 'animateBars 0.5s infinite ease-in-out 0.4s',
         bars6: 'animateBars 0.5s infinite ease-in-out 0.8s',
       },
+      boxShadow: {
+        inner_1: 'inset 2px 1px 4px rgba(0, 0, 0, 0.6)',
+      },
     },
   },
   plugins: [],
