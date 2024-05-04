@@ -18,6 +18,7 @@ import { checkTokenLoader, tokenLoader } from '../ui/auth';
 import MaxHeightItemsLayout from '../layouts/MaxHeightItemsLayout';
 import RecentPage from '../pages/RecentPage';
 import ArtistPage from '../pages/ArtistPage';
+import TrackPage from '../pages/TrackPage';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -37,7 +38,7 @@ const router = createBrowserRouter(
             <Route path=":id" />
           </Route>
           <Route path="artists/:id" element={<ArtistPage />} />
-          <Route path="tracks/:id" />
+          <Route path="tracks/:id" element={<TrackPage />} />
         </Route>
       </Route>
       <Route path="logout" action={logoutAction} />

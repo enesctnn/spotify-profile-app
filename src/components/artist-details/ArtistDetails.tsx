@@ -20,11 +20,13 @@ export function ArtistDetails() {
               target="_blank"
               title="Open Spotify"
             >
-              <img
-                src={artistData.img}
-                alt={artistData.name + ' named music group image'}
-                className="mx-auto h-36 w-36  rounded-full shadow shadow-black outline-dashed outline-2 outline-offset-2 transition-transform duration-300 hover:scale-110 sm:h-48 sm:w-48"
-              />
+              <div className="mx-auto h-36 w-36 overflow-hidden rounded-full outline-dashed outline-2 outline-offset-2 transition-transform duration-300 hover:scale-110 sm:h-48 sm:w-48">
+                <img
+                  src={artistData.img}
+                  alt={artistData.name + ' named music group image'}
+                  className=" object-cover object-center"
+                />
+              </div>
             </a>
             <h1
               className="text-center text-3xl font-bold hover:underline"
@@ -35,7 +37,7 @@ export function ArtistDetails() {
               </a>
             </h1>
           </header>
-          <div className="grid w-full grid-cols-3 justify-evenly text-center text-[#1E71D6] max-sm:grid-cols-1 max-sm:gap-10">
+          <div className="text-spotify-blue grid w-full grid-cols-3 justify-evenly text-center max-sm:grid-cols-1 max-sm:gap-10">
             <section>
               {artistData.followers}
               <h2 className="mt-1 text-sm font-semibold text-spotify-gray-100">

@@ -11,6 +11,10 @@
     @apply rounded-md bg-spotify-gray-300;
   }
 
+  input[type='range']::-webkit-slider-thumb {
+    @apply hover:cursor-pointer hover:opacity-100;
+  }
+
   div#card::-webkit-scrollbar {
     @apply rounded-r-md;
   }

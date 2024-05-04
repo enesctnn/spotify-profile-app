@@ -97,7 +97,7 @@ export interface TrackResponse {
   };
   name: string;
   popularity: number;
-  preview_url: string;
+  preview_url: string | null;
   track_number: number;
   type: string;
   uri: string;
@@ -235,7 +235,7 @@ export interface SpotifyTrackResponse {
   };
   name: string;
   popularity: number;
-  preview_url: string;
+  preview_url: string | null;
   track_number: number;
   type: string;
   uri: string;
@@ -283,13 +283,13 @@ interface Track {
     href: string;
     id: string;
     is_playable: boolean;
-    linked_from: { [key: string]:string };
+    linked_from: { [key: string]: string };
     restrictions: {
       reason: string;
     };
     name: string;
     popularity: number;
-    preview_url: string;
+    preview_url: string | null;
     track_number: number;
     type: string;
     uri: string;

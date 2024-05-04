@@ -12,6 +12,11 @@ export default {
             200: '#535353',
             300: '#212121',
           },
+          blue: {
+            DEFAULT: '#1E71D6',
+            100: '#1E51D6',
+            200: '#1E32D6',
+          },
         },
       },
       backgroundImage: {
