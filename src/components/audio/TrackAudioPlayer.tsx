@@ -68,7 +68,7 @@ export const TrackAudioPlayer = ({
   }, [isPaused]);
 
   return (
-    <div className="flex gap-4 rounded-md border-2 px-5 py-3 shadow-md shadow-black">
+    <div className="flex w-max gap-4 rounded-md border-2 px-5 py-3 shadow-md shadow-black">
       <button
         className="flex"
         onClick={() => setIsPaused(prevState => !prevState)}

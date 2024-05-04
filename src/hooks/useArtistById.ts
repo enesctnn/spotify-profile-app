@@ -20,7 +20,6 @@ export function useArtistById(id: string) {
         index !== 0 && index % 3 === 0 ? digit + ',' : digit
       )
       .reverse();
-
     return {
       name: data.name,
       genres: data.genres,

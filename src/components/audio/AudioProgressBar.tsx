@@ -13,7 +13,7 @@ export function AudioProgressBar({
   const totalDuration = getMinutesFromSeconds(maxProgress);
 
   return (
-    <div className="flex w-max items-center justify-center gap-3  overflow-hidden">
+    <div className="flex w-max items-center justify-center gap-3 overflow-hidden">
       <span className="w-12 shrink-0">{currentDuration}</span>
       <input
         type="range"

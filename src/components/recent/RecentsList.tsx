@@ -4,6 +4,7 @@ import { LoadingSkeleton } from '../ui/loading-skeleton';
 
 export function RecentsList() {
   const recentlyPlayedData = useRecentlyPlayed();
+  
   return (
     <>
       {!recentlyPlayedData && <LoadingSkeleton />}

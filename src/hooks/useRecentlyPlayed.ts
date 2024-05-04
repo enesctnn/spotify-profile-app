@@ -17,22 +17,28 @@ export function useRecentlyPlayed(limit?: number) {
     track_name: string;
     album_name: string;
     duration: string;
-    artists: string[];
+    artists: { [key: string]: string };
     img: string;
     played_at: string;
   }[] = [];
   if (data) {
-    data.items.forEach(item =>
+    data.items.forEach(item => {
+      const artists: { [key: string]: string } = {};
+      item.track.artists.forEach(artist => {
+        const name = artist.name;
+        const id = artist.id;
+        artists[name] = id;
+      });
       recentlyPlayedData.push({
         id: item.track.id,
         track_name: item.track.name,
         album_name: item.track.album.name,
         duration: getMinutesFromMiliseconds(item.track.duration_ms),
-        artists: item.track.artists.map(artist => artist.name),
+        artists,
         img: item.track.album.images[0].url,
         played_at: item.played_at,
-      })
-    );
+      });
+    });
 
     return recentlyPlayedData;
   }

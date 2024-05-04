@@ -18,7 +18,6 @@ export function useTrackById(id: string) {
       const id = artist.id;
       artists[name] = id;
     });
-
     return {
       track_name: data.name,
       album_name: data.album.name,
