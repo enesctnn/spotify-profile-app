@@ -57,6 +57,7 @@ export function usePlaylistById(id: string) {
       owner: data.owner.display_name,
       owner_url: data.owner.external_urls.spotify,
       description: data.description,
+      followers: +data.followers.total,
     };
 
     return { playListFeatures, playlistTracks };

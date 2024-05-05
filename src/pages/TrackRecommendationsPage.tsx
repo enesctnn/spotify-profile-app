@@ -1,8 +1,9 @@
 import { useParams } from 'react-router-dom';
-import { useTrackRecommendations } from '../hooks/useTrackRecommendations';
-import { Card } from '../components/ui/card';
+import { PathLink } from '../components/shared/PathLink';
 import { TopListItem } from '../components/shared/TopListItem';
+import { Card } from '../components/ui/card';
 import { LoadingSkeleton } from '../components/ui/loading-skeleton';
+import { useTrackRecommendations } from '../hooks/useTrackRecommendations';
 
 function TrackRecommendationsPage() {
   const { id } = useParams();
@@ -10,14 +11,24 @@ function TrackRecommendationsPage() {
   const recommendationsData = useTrackRecommendations(id);
 
   return (
-    <Card>
-      {!recommendationsData && <LoadingSkeleton />}
+    <Card className="space-y-10">
       <header>
-        <h1 className="text-xl font-bold">Recommendations</h1>
+        <h1 className="text-xl font-bold">
+          Recommended Tracks Based On “{' '}
+          <PathLink
+            path="playlists"
+            id={id}
+            className=" text-spotify-green hover:underline"
+          >
+            {recommendationsData?.playlist_name}
+          </PathLink>{' '}
+          ”
+        </h1>
       </header>
-      <ul className="">
+      {!recommendationsData && <LoadingSkeleton />}
+      <ul>
         {recommendationsData &&
-          recommendationsData.map(item => (
+          recommendationsData.playlistTracks.map(item => (
             <TopListItem key={item.id} {...item} item_type={'tracks'} />
           ))}
       </ul>

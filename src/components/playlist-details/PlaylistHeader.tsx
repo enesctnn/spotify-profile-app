@@ -1,7 +1,8 @@
 import { useParams } from 'react-router-dom';
-import { PlaylistAnalysis } from './PlaylistAnalysis';
+import { useSeveralTrackAnalysis } from '../../hooks/useSeveralTrackAnalysis';
 import { PathLink } from '../shared/PathLink';
 import { Button } from '../ui/button';
+import { PlaylistRadarChart } from './PlaylistRadarChart';
 
 export const PlaylistHeader = ({
   description,
@@ -11,6 +12,7 @@ export const PlaylistHeader = ({
   spotify_url,
   total,
   owner_url,
+  followers,
 }: {
   name: string;
   total: number;
@@ -19,12 +21,15 @@ export const PlaylistHeader = ({
   owner: string;
   description: string | null;
   owner_url: string;
+  followers: number;
 }) => {
   const { id } = useParams();
   if (!id) throw new Error('Missing id!');
 
+  const data = useSeveralTrackAnalysis(id);
+
   return (
-    <header className="sticky flex w-full flex-col items-center gap-y-8 max-md:justify-center md:left-0 md:h-full">
+    <header className="flex flex-col items-center gap-y-8 max-md:w-full max-md:justify-center md:h-max md:max-w-80">
       <a
         className="mx-auto w-80"
         href={spotify_url}
@@ -37,7 +42,7 @@ export const PlaylistHeader = ({
           className="mx-auto object-cover object-top shadow-md shadow-black"
         />
       </a>
-      <section className="space-y-2 overflow-hidden text-center font-bold">
+      <section className="w-full space-y-2 truncate text-center font-bold">
         <a
           href={spotify_url}
           target="_blank"
@@ -49,11 +54,13 @@ export const PlaylistHeader = ({
           {name}
         </a>
         {description && (
-          <p className="text-sm text-spotify-gray-100 drop-shadow-border">
+          <p className="whitespace-pre-line text-sm text-spotify-gray-100 drop-shadow-border">
             {description.split('&#x27;').join("'")}
           </p>
         )}
-        <p className="text-sm">{total} Tracks</p>
+        <p>
+          {followers} likes · {data?.total_duration} · {total} songs
+        </p>
         <p className="text-spotify-gray-100">
           By{' '}
           <a
@@ -66,8 +73,7 @@ export const PlaylistHeader = ({
           </a>
         </p>
       </section>
-      <PlaylistAnalysis />
-
+      {data?.chartData && <PlaylistRadarChart chartData={data.chartData} />}
       <Button className="border-none bg-spotify-green text-sm hover:bg-spotify-green-100">
         <PathLink path="recommendations" id={id}>
           Get Recommendations

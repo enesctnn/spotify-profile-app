@@ -14,7 +14,7 @@ function PlaylistDetailsPage() {
   return (
     <Card
       maxHeightScreen
-      className="relative gap-4 max-md:flex-col max-md:space-y-10 md:flex"
+      className="gap-4 max-md:flex-col max-md:space-y-10 md:flex"
     >
       {!playlistData && <LoadingSkeleton />}
       {playlistData && (

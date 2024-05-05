@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useTrackAnalysis } from '../../hooks/useTrackAnalysis';
-import { TrackCharts } from './TrackCharts';
+import { TrackBarCharts } from './TrackBarCharts';
 import { TrackFeatures } from './TrackFeatures';
 
 export function TrackAnalysis() {
@@ -10,13 +10,11 @@ export function TrackAnalysis() {
   const trackAnalysisData = useTrackAnalysis(id);
 
   return (
-    <>
-      {trackAnalysisData && (
-        <>
-          <TrackFeatures {...trackAnalysisData.tableData} />
-          <TrackCharts chartData={trackAnalysisData.chartData} />
-        </>
-      )}
-    </>
+    trackAnalysisData && (
+      <>
+        <TrackFeatures {...trackAnalysisData.tableData} />
+        <TrackBarCharts chartData={trackAnalysisData.chartData} />
+      </>
+    )
   );
 }

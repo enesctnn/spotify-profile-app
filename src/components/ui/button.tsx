@@ -9,7 +9,7 @@ export const Button = React.forwardRef<
     {...props}
     ref={ref}
     className={cn(
-      'text-md whitespace-nowrap rounded-full border bg-spotify-gray px-7 py-3 text-center text-lg font-bold text-white shadow-md transition-all duration-500 hover:bg-white hover:text-black uppercase',
+      'text-md whitespace-nowrap rounded-full border bg-spotify-gray-300 px-7 py-3 text-center text-lg font-bold text-white shadow-md transition-all duration-500 hover:bg-white hover:text-black uppercase',
       className
     )}
   />

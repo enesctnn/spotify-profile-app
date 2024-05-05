@@ -11,14 +11,14 @@ export function usePlaylistTrackIds(id: string) {
     queryFn: ({ signal }) => fetchPlaylistById(token, id, signal),
   });
 
-  const playlistTrackIds: string[] = [];
+  const ids: string[] = [];
 
-  if (data && data.tracks) {
+  if (data && data.tracks && data.tracks.items.length > 0) {
     data.tracks.items.forEach(item => {
-      if (item.track && item.track.id) playlistTrackIds.push(item.track.id);
+      if (item.track && item.track.id) ids.push(item.track.id);
     });
-    
-    return playlistTrackIds;
+
+    return { ids, playlist_name: data.name };
   }
 
   return null;

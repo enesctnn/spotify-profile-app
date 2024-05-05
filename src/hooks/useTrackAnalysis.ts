@@ -41,32 +41,19 @@ export function useTrackAnalysis(id: string) {
   const trackData = useTrackById(id);
 
   if (!!data && trackData) {
-    const chartData = [
-      {
-        value: data.acousticness,
-        name: 'acousticness',
-      },
-      {
-        value: data.danceability,
-        name: 'dancebility',
-      },
-      {
-        value: data.energy,
-        name: 'energy',
-      },
-      {
-        value: data.instrumentalness,
-        name: 'instrumentalness',
-      },
-      {
-        value: data.liveness,
-        name: 'liveness',
-      },
-      {
-        value: data.valence,
-        name: 'positiveness',
-      },
-    ];
+    const chartNames = {
+      energy: 'Energy',
+      liveness: 'Liveness',
+      danceability: 'Danceability',
+      instrumentalness: 'Instrumental',
+      acousticness: 'Acoustic',
+      valence: 'Positiveness',
+    };
+
+    const chartData = Object.keys(chartNames).map(key => ({
+      name: chartNames[key as keyof typeof chartNames],
+      value: +data[key as keyof typeof data],
+    }));
 
     const tableData = {
       duration: getMinutesFromMiliseconds(data.duration_ms),

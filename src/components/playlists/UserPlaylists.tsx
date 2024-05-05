@@ -12,7 +12,7 @@ export function UserPlaylists() {
         {userPlaylists &&
           userPlaylists.userPlaylistData.map(
             ({ id, img, playlist_name, tracks_count }) => (
-              <li key={id} className="mx-auto w-40 ">
+              <li key={id} className="mx-auto w-52 ">
                 <PathLink
                   path="playlists"
                   id={id}

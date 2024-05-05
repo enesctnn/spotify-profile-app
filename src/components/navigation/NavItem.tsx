@@ -18,8 +18,8 @@ export function NavItem({
     <li
       aria-label={`User's ${title}`}
       className={cn(
-        'group relative flex w-full flex-col items-center justify-center transition-all hover:bg-spotify-gray-300 hover:shadow-sm',
-        isActive && 'bg-spotify-gray-300/60'
+        'group relative flex w-full flex-col items-center justify-center transition-all duration-300 hover:bg-black hover:shadow-sm',
+        isActive && 'bg-black/60'
       )}
     >
       <span

@@ -12,10 +12,7 @@ type PlaylistTracksProps = {
 };
 
 export const PlaylistTracks = ({ playlistTracks }: PlaylistTracksProps) => (
-  <ul
-    className="w-full space-y-1 md:overflow-y-scroll md:rounded-md md:shadow-md md:shadow-black"
-    id="card"
-  >
+  <ul className="w-full space-y-1" id="card">
     {playlistTracks.map(
       ({ album_name, artists, duration, id, img, track_name }) => (
         <TopListItem

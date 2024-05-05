@@ -11,10 +11,10 @@ export function useTrackRecommendations(playlist_id: string) {
   const playlistTrackIds = usePlaylistTrackIds(playlist_id);
 
   const { data } = useQuery({
-    queryKey: ['recommendations', token, playlist_id, playlistTrackIds],
+    queryKey: ['recommendations', token, playlist_id, playlistTrackIds?.ids],
     queryFn: ({ signal }) =>
-      fetchTrackRecommendations(token, playlistTrackIds!, signal),
-    enabled: !!playlistTrackIds && playlistTrackIds.length > 0,
+      fetchTrackRecommendations(token, playlistTrackIds!.ids, signal),
+    enabled: !!playlistTrackIds?.ids && playlistTrackIds.ids.length > 0,
   });
 
   const playlistTracks: {
@@ -47,7 +47,7 @@ export function useTrackRecommendations(playlist_id: string) {
         }
       });
     }
-    return playlistTracks;
+    return { playlistTracks, playlist_name: playlistTrackIds?.playlist_name };
   }
 
   return null;

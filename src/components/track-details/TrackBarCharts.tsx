@@ -8,7 +8,7 @@ import {
   YAxis,
 } from 'recharts';
 
-export const TrackCharts = ({
+export const TrackBarCharts = ({
   chartData,
 }: {
   chartData: { name: string; value: number }[];
@@ -26,14 +26,8 @@ export const TrackCharts = ({
         height={125}
         tickMargin={55}
       />
-      <YAxis stroke="#8884d8" tickCount={6} />
-      <CartesianGrid
-        fill="#8884d8"
-        fillOpacity={0.02}
-        stroke="#1E71D6"
-        strokeWidth="0.1px"
-        color="#1E71D6"
-      />
+      <YAxis stroke="#8884d8" tickCount={6} domain={[0, 1]} />
+      <CartesianGrid fillOpacity={0.02} stroke="white" strokeWidth="0.1px" />
       <Bar
         dataKey="value"
         stroke="#1E71D6"
