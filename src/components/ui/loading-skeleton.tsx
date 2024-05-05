@@ -1,58 +1,10 @@
+import loading_gif from '/loading.gif';
 export const LoadingSkeleton = () => (
-  <div className="h-full w-full">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 400 250"
-      className="mx-auto h-72 w-80"
-    >
-      <rect
-        x="50"
-        y="50"
-        width="20"
-        height="100"
-        fill="#535353"
-        className="animate-bars1"
-      />
-      <rect
-        x="100"
-        y="60"
-        width="20"
-        height="90"
-        fill="#535353"
-        className="animate-bars2"
-      />
-      <rect
-        x="150"
-        y="40"
-        width="20"
-        height="120"
-        fill="#535353"
-        className="animate-bars3"
-      />
-      <rect
-        x="200"
-        y="70"
-        width="20"
-        height="90"
-        fill="#535353"
-        className="animate-bars4"
-      />
-      <rect
-        x="250"
-        y="55"
-        width="20"
-        height="110"
-        fill="#535353"
-        className="animate-bars5"
-      />
-      <rect
-        x="300"
-        y="55"
-        width="20"
-        height="130"
-        fill="#535353"
-        className="animate-bars6"
-      />
-    </svg>
+  <div className="mx-auto h-full w-full">
+    <img
+      src={loading_gif}
+      alt="spotify loading gif animation"
+      className="object-center"
+    />
   </div>
 );
