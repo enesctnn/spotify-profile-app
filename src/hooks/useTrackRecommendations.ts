@@ -11,7 +11,7 @@ export function useTrackRecommendations(playlist_id: string) {
   const playlistTrackIds = usePlaylistTrackIds(playlist_id);
 
   const { data } = useQuery({
-    queryKey: ['several-track-analysis', token, playlist_id, playlistTrackIds],
+    queryKey: ['recommendations', token, playlist_id, playlistTrackIds],
     queryFn: ({ signal }) =>
       fetchTrackRecommendations(token, playlistTrackIds!, signal),
     enabled: !!playlistTrackIds && playlistTrackIds.length > 0,
