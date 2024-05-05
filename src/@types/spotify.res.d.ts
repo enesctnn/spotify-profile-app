@@ -295,3 +295,17 @@ export interface SpotifyTrackAnalysisResponse {
   uri: string;
   valence: number;
 }
+
+export interface TrackRecommendationResponse {
+  seeds: Seed[];
+  tracks: SpotifyTrackResponse[];
+}
+
+interface Seed {
+  afterFilteringSize: number;
+  afterRelinkingSize: number;
+  href: string;
+  id: string;
+  initialPoolSize: number;
+  type: string;
+}

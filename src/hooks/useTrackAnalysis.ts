@@ -40,7 +40,7 @@ export function useTrackAnalysis(id: string) {
 
   const trackData = useTrackById(id);
 
-  if (data && trackData) {
+  if (!!data && trackData) {
     const chartData = [
       {
         value: data.acousticness,

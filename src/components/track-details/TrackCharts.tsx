@@ -13,10 +13,10 @@ export const TrackCharts = ({
 }: {
   chartData: { name: string; value: number }[];
 }) => (
-  <ResponsiveContainer width="100%" height={700}>
+  <ResponsiveContainer className="-ml-6" width="100%" height={700}>
     <BarChart
       data={chartData}
-      className="text-sm font-bold capitalize text-spotify-gray-200"
+      className="py-3 text-sm font-bold capitalize  text-spotify-gray-200"
       layout="horizontal"
     >
       <XAxis
@@ -26,18 +26,24 @@ export const TrackCharts = ({
         height={125}
         tickMargin={55}
       />
-      <YAxis stroke="#8884d8" />
-      <CartesianGrid stroke="#1db954" strokeWidth="0.1px" color="#1db954" />
+      <YAxis stroke="#8884d8" tickCount={6} />
+      <CartesianGrid
+        fill="#8884d8"
+        fillOpacity={0.02}
+        stroke="#1E71D6"
+        strokeWidth="0.1px"
+        color="#1E71D6"
+      />
       <Bar
         dataKey="value"
-        stroke="#1db954"
-        fill="#1db954"
+        stroke="#1E71D6"
+        fill="#1E71D6"
         barSize="8%"
         strokeWidth={2}
         fillOpacity={0.35}
       />
       <Tooltip
-        cursor={{ stroke: '#1db954', strokeWidth: 0.3, fill: 'transparent' }}
+        cursor={{ stroke: '#1E71D6', strokeWidth: 0.3, fill: 'transparent' }}
       />
     </BarChart>
   </ResponsiveContainer>

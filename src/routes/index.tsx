@@ -18,6 +18,7 @@ import RecentPage from '../pages/RecentPage';
 import TopArtistsPage from '../pages/TopArtistsPage';
 import TopTracksPage from '../pages/TopTracksPage';
 import TrackPage from '../pages/TrackPage';
+import TrackRecommendationsPage from '../pages/TrackRecommendationsPage';
 import UserProfilePage from '../pages/UserProfilePage';
 import { checkTokenLoader, tokenLoader } from '../ui/auth';
 
@@ -39,6 +40,10 @@ const router = createBrowserRouter(
           <Route path="playlists/:id" element={<PlaylistDetailsPage />} />
           <Route path="artists/:id" element={<ArtistPage />} />
           <Route path="tracks/:id" element={<TrackPage />} />
+          <Route
+            path="recommendations/:id"
+            element={<TrackRecommendationsPage />}
+          />
         </Route>
       </Route>
       <Route path="logout" action={logoutAction} />

@@ -22,7 +22,7 @@ export function usePlaylistById(id: string) {
   }[] = [];
 
   if (data) {
-    if (data.tracks) {
+    if (data.tracks && data.tracks.items.length > 0) {
       data.tracks.items.forEach(item => {
         if (
           item.track &&
@@ -55,6 +55,7 @@ export function usePlaylistById(id: string) {
       spotify_url: data.external_urls.spotify,
       img: data.images[0].url,
       owner: data.owner.display_name,
+      owner_url: data.owner.external_urls.spotify,
       description: data.description,
     };
 

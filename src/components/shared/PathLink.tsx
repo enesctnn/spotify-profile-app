@@ -8,7 +8,7 @@ export const PathLink = ({
   className,
 }: {
   children: React.ReactNode;
-  path: 'tracks' | 'artists' | 'playlists';
+  path: 'tracks' | 'artists' | 'playlists'|'recommendations';
   id?: string;
   className?: string;
 }) => (

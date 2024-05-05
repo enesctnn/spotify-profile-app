@@ -9,6 +9,7 @@ import {
   SpotifyTrackAnalysisResponse,
   SpotifyTrackResponse,
   SpotifyUserPlaylistResponse,
+  TrackRecommendationResponse,
 } from '../@types/spotify.res';
 
 import spotifyAxios from './spotify-axios';
@@ -154,7 +155,7 @@ export async function fetchTrackById(
     return res.data;
   } catch (error) {
     if (error instanceof AxiosError) throw new Error(error.message);
-    throw new Error('Something went wrong while fetching artist!');
+    throw new Error('Something went wrong while fetching track!');
   }
 }
 
@@ -193,5 +194,50 @@ export async function fetchTrackAnalysis(
   } catch (error) {
     if (error instanceof AxiosError) throw new Error(error.message);
     throw new Error('Something went wrong while fetching track analysis!');
+  }
+}
+
+export async function fetchSeveralTrackAnalysis(
+  authorizationToken: string,
+  ids: string[],
+  signal?: AbortSignal
+): Promise<{ audio_features: SpotifyTrackAnalysisResponse[] }> {
+  try {
+    const res = await spotifyAxios.get(`audio-features?ids=${ids.join(',')}`, {
+      headers: {
+        Authorization: `Bearer ${authorizationToken}`,
+      },
+      signal,
+    });
+    return res.data;
+  } catch (error) {
+    if (error instanceof AxiosError) throw new Error(error.message);
+    throw new Error(
+      'Something went wrong while fetching several track analysis!'
+    );
+  }
+}
+
+export async function fetchTrackRecommendations(
+  authorizationToken: string,
+  ids: string[],
+  signal?: AbortSignal
+): Promise<TrackRecommendationResponse> {
+  try {
+    const res = await spotifyAxios.get(
+      `recommendations?seed_tracks=${ids.slice(0, 5).join(',')}`,
+      {
+        headers: {
+          Authorization: `Bearer ${authorizationToken}`,
+        },
+        signal,
+      }
+    );
+    return res.data;
+  } catch (error) {
+    if (error instanceof AxiosError) throw new Error(error.message);
+    throw new Error(
+      'Something went wrong while fetching several track recommendations!'
+    );
   }
 }
