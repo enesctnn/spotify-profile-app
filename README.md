@@ -11,7 +11,11 @@ This project is a Spotify profile app built with React and Vite. It allows users
 - User authentication with Spotify.
 - Display user's profile information.
 - View user's top tracks and artists.
+- View detailed track or playlist analysis with bar graphs and radar graphs.
+- Get recommendations by playlist tracks. 
+- Create new playlist from recommended tracks.
 - Responsive design for various screen sizes.
+
 
 ## Technologies Used
 
