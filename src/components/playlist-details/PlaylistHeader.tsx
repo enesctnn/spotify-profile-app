@@ -42,7 +42,7 @@ export const PlaylistHeader = ({
           className="mx-auto object-cover object-top shadow-md shadow-black"
         />
       </a>
-      <section className="w-full space-y-2 truncate text-center font-bold">
+      <section className="w-full space-y-2 truncate text-center font-bold max-md:max-w-96">
         <a
           href={spotify_url}
           target="_blank"
