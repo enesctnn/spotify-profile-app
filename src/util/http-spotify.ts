@@ -1,5 +1,6 @@
 import { AxiosError } from 'axios';
 import {
+  CreatePlaylistResponse,
   SpotifyArtistResponse,
   SpotifyPlaylistResponseById,
   SpotifyProfileResponse,
@@ -239,5 +240,60 @@ export async function fetchTrackRecommendations(
     throw new Error(
       'Something went wrong while fetching several track recommendations!'
     );
+  }
+}
+
+export async function createPlaylist(
+  authorizationToken: string,
+  user_id: string,
+  name: string,
+  description: string,
+  signal?: AbortSignal
+): Promise<CreatePlaylistResponse> {
+  try {
+    const res = await spotifyAxios.post(
+      `users/${user_id}/playlists`,
+      {
+        name: JSON.stringify(name),
+        description: JSON.stringify(description),
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${authorizationToken}`,
+          'Content-Type': 'application/json',
+        },
+
+        signal,
+      }
+    );
+    return res.data;
+  } catch (error) {
+    if (error instanceof AxiosError) throw new Error(error.message);
+    throw new Error('Something went wrong while creating playlist!');
+  }
+}
+
+export async function addItemsToPlaylist(
+  authorizationToken: string,
+  playlist_id: string,
+  track_uris: string[],
+  signal?: AbortSignal
+): Promise<{ snapshot_id: string }> {
+  try {
+    const res = await spotifyAxios.post(
+      `playlists/${playlist_id}/tracks?uris=${track_uris.join(',')}`,
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${authorizationToken}`,
+          'Content-Type': 'application/json',
+        },
+        signal,
+      }
+    );
+    return res.data;
+  } catch (error) {
+    if (error instanceof AxiosError) throw new Error(error.message);
+    throw new Error('Something went wrong while adding tracks to playlist!');
   }
 }

@@ -14,6 +14,8 @@ export function useTrackRecommendations(playlist_id: string) {
     queryKey: ['recommendations', token, playlist_id, playlistTrackIds?.ids],
     queryFn: ({ signal }) =>
       fetchTrackRecommendations(token, playlistTrackIds!.ids, signal),
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
     enabled: !!playlistTrackIds?.ids && playlistTrackIds.ids.length > 0,
   });
 
@@ -25,6 +27,8 @@ export function useTrackRecommendations(playlist_id: string) {
     duration: string;
     artists: { [key: string]: string };
   }[] = [];
+
+  const uris: string[] = [];
 
   if (data) {
     if (data.tracks) {
@@ -44,10 +48,15 @@ export function useTrackRecommendations(playlist_id: string) {
             duration: getMinutesFromMiliseconds(item.duration_ms),
             artists,
           });
+          if (item.uri) uris.push(item.uri);
         }
       });
     }
-    return { playlistTracks, playlist_name: playlistTrackIds?.playlist_name };
+    return {
+      playlistTracks,
+      playlist_name: playlistTrackIds!.playlist_name,
+      uris,
+    };
   }
 
   return null;

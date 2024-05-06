@@ -309,3 +309,33 @@ interface Seed {
   initialPoolSize: number;
   type: string;
 }
+
+export interface CreatePlaylistResponse {
+  collaborative: boolean;
+  description: string;
+  external_urls: ExternalUrls;
+  followers: Followers;
+  href: string;
+  id: string;
+  images: SpotifyImage[];
+  name: string;
+  owner: SpotifyPlaylistOwner;
+  public: boolean;
+  snapshot_id: string;
+  tracks: {
+    href: string;
+    limit: number;
+    next: string;
+    offset: number;
+    previous: string;
+    total: number;
+    items: {
+      added_at: string;
+      added_by: AddedBy;
+      is_local: boolean;
+      track: SpotifyTrackResponse;
+    }[];
+  };
+  type: string;
+  uri: string;
+}

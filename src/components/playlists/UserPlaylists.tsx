@@ -19,12 +19,14 @@ export function UserPlaylists() {
                   className="w-full space-y-5 text-center transition-opacity"
                 >
                   <div className="w-full overflow-hidden shadow-md shadow-black duration-500 hover:opacity-50">
-                    <img
-                      className="object-cover object-center"
-                      src={img}
-                      alt={playlist_name + ' spotify playlist image'}
-                      loading="lazy"
-                    />
+                    {img && (
+                      <img
+                        className="object-cover object-center"
+                        src={img}
+                        alt={playlist_name + ' spotify playlist image'}
+                        loading="lazy"
+                      />
+                    )}
                   </div>
                   <section className="drop-shadow-sm">
                     <h3
