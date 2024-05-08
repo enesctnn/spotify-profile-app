@@ -11,11 +11,11 @@ This project is a Spotify profile app built with React and Vite. It allows users
 - User authentication with Spotify.
 - Display user's profile information.
 - View user's top tracks and artists.
-- View detailed track or playlist analysis with bar graphs and radar graphs.
-- Get recommendations by playlist tracks. 
-- Create new playlist from recommended tracks.
+- View detailed track and playlist analysis with bar graphs and radar graphs.
+- View the details in your playlists and see the analysis.
+- Discover New Tracks: Users can now click the "Get Recommendations" button on any playlist detail page to receive up to 20 recommended tracks based on the current playlist's style and mood.
+- Save to Spotify: Found a set of recommendations you love? Simply click "Save on Spotify", and we'll create a public playlist on your Spotify profile named "Recommended Songs Based On (Playlist Name)", with the current date as a description.
 - Responsive design for various screen sizes.
-
 
 ## Technologies Used
 
@@ -122,7 +122,7 @@ VITE_CLIENT_SECRET=your_client_secret
 npm run dev
 ```
 
-1. Open your browser and visit `http://localhost:5173/` to view the app.
+1. Open your browser and visit `http://localhost:5173/spotify-profile-app/` to view the app.
 
 ## Usage
 
@@ -136,8 +136,8 @@ You can try out the live demo of the app [here](https://enesctnn.github.io/spoti
 
 If you'd like to join the testing phase, please email your Spotify information to enespcetin@gmail.com:
 
-- **Spotify Name:** [Name]
-- **Spotify Email:** [Email]
+- **Spotify Name:** Name
+- **Spotify Email:** Email
 
 ## Contributing
 
