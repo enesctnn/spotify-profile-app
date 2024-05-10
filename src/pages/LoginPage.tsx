@@ -9,6 +9,22 @@ const LoginPage = () => (
         </h1>
       </header>
       <LoginButton />
+      <section className="w-full animate-pulse space-y-2 text-center hover:animate-none">
+        <h2 className="text-xs font-bold text-spotify-gray-100">
+          Spotify Profile App Is Currently On Testing Phase
+        </h2>
+        <p className="text-xs font-semibold text-spotify-gray-200">
+          Click{' '}
+          <a
+            className="font-bold text-spotify-gray-100 hover:underline"
+            target="_blank"
+            href="https://docs.google.com/forms/d/e/1FAIpQLSdDjpfYkEI44uVhnAfUL-0apVlieV131D2722bWp6GjPo_j4g/viewform?usp=sf_link"
+          >
+            Here
+          </a>{' '}
+          to submit your spotify information.
+        </p>
+      </section>
     </div>
   </div>
 );

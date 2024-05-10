@@ -20,9 +20,7 @@ function keyToChord(key: number) {
     'B',
   ];
 
-  if (key === -1) {
-    return null;
-  } else if (key >= 0 && key <= 11) {
+  if (key >= 0 && key <= 11) {
     return pitchClasses[key];
   } else {
     return null;
