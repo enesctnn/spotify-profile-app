@@ -1,19 +1,15 @@
 import { useQuery } from '@tanstack/react-query';
 import { getMinutesFromMiliseconds } from '../lib/time';
-import { getAuthToken } from '../ui/auth';
 import { fetchTrackRecommendations } from '../util/http-spotify';
 import { usePlaylistTrackIds } from './usePlaylistTrackIds';
 
 export function useTrackRecommendations(playlist_id: string) {
-  const token = getAuthToken();
-  if (!token) throw new Error('Missing token!');
-
   const playlistTrackIds = usePlaylistTrackIds(playlist_id);
 
   const { data } = useQuery({
-    queryKey: ['recommendations', token, playlist_id, playlistTrackIds?.ids],
+    queryKey: ['recommendations', playlist_id, playlistTrackIds?.ids],
     queryFn: ({ signal }) =>
-      fetchTrackRecommendations(token, playlistTrackIds!.ids, signal),
+      fetchTrackRecommendations(playlistTrackIds!.ids, signal),
     refetchOnWindowFocus: false,
     refetchOnMount: false,
     enabled: !!playlistTrackIds?.ids && playlistTrackIds.ids.length > 0,

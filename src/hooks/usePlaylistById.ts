@@ -1,15 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
 import { getMinutesFromMiliseconds } from '../lib/time';
-import { getAuthToken } from '../ui/auth';
 import { fetchPlaylistById } from '../util/http-spotify';
 
 export function usePlaylistById(id: string) {
-  const token = getAuthToken();
-  if (!token) throw new Error('Missing token!');
-
   const { data } = useQuery({
-    queryKey: ['playlist', token, id],
-    queryFn: ({ signal }) => fetchPlaylistById(token, id, signal),
+    queryKey: ['playlist', id],
+    queryFn: ({ signal }) => fetchPlaylistById(id, signal),
   });
 
   const playlistTracks: {

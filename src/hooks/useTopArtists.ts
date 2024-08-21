@@ -1,18 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
 import { fetchUserTopArtists } from '../util/http-spotify';
-import { getAuthToken } from '../ui/auth';
 
 export function useTopArtists(
   time_range: 'short_term' | 'medium_term' | 'long_term',
   limit?: number
 ) {
-  const token = getAuthToken();
-  if (!token) throw new Error('Missing token');
-
   const { data } = useQuery({
-    queryKey: ['user-top-artists', token, time_range, limit],
-    queryFn: ({ signal }) =>
-      fetchUserTopArtists(token, time_range, signal, limit),
+    queryKey: ['user-top-artists', time_range, limit],
+    queryFn: ({ signal }) => fetchUserTopArtists(time_range, signal, limit),
   });
   const userTopArtists: { id: string; band_name: string; img: string }[] = [];
 

@@ -1,15 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
 import { getMinutesFromMiliseconds } from '../lib/time';
-import { getAuthToken } from '../ui/auth';
 import { fetchUserRecentlyPlayed } from '../util/http-spotify';
 
 export function useRecentlyPlayed(limit?: number) {
-  const token = getAuthToken();
-  if (!token) throw new Error('Missing token!');
-
   const { data } = useQuery({
-    queryKey: ['user-recent', token, limit],
-    queryFn: ({ signal }) => fetchUserRecentlyPlayed(token, signal, limit),
+    queryKey: ['user-recent', limit],
+    queryFn: ({ signal }) => fetchUserRecentlyPlayed(signal, limit),
   });
 
   const recentlyPlayedData: {

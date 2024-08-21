@@ -1,24 +1,15 @@
 import { useQuery } from '@tanstack/react-query';
 import { getHoursFromMiliseconds } from '../lib/time';
-import { getAuthToken } from '../ui/auth';
 import { fetchSeveralTrackAnalysis } from '../util/http-spotify';
 import { usePlaylistTrackIds } from './usePlaylistTrackIds';
 
 export function useSeveralTrackAnalysis(playlist_id: string) {
-  const token = getAuthToken();
-  if (!token) throw new Error('Missing token!');
-
   const playlistTrackIds = usePlaylistTrackIds(playlist_id);
 
   const { data } = useQuery({
-    queryKey: [
-      'several-track-analysis',
-      token,
-      playlist_id,
-      playlistTrackIds?.ids,
-    ],
+    queryKey: ['several-track-analysis', playlist_id, playlistTrackIds?.ids],
     queryFn: ({ signal }) =>
-      fetchSeveralTrackAnalysis(token, playlistTrackIds!.ids, signal),
+      fetchSeveralTrackAnalysis(playlistTrackIds!.ids, signal),
     enabled: !!playlistTrackIds?.ids && playlistTrackIds?.ids.length > 0,
   });
 

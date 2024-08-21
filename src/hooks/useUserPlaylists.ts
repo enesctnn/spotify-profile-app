@@ -1,14 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
-import { getAuthToken } from '../ui/auth';
 import { fetchUserPlaylists } from '../util/http-spotify';
 
 export function useUserPlaylists(limit?: number) {
-  const token = getAuthToken();
-  if (!token) throw new Error('Missing token');
-
   const { data } = useQuery({
-    queryKey: ['user-playlists', token, limit],
-    queryFn: ({ signal }) => fetchUserPlaylists(token, signal, limit),
+    queryKey: ['user-playlists', limit],
+    queryFn: ({ signal }) => fetchUserPlaylists(signal, limit),
   });
 
   const userPlaylistData: {

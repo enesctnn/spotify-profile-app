@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { AiOutlineMuted, AiOutlineSound } from 'react-icons/ai';
+
 import { FaPause, FaPlay } from 'react-icons/fa';
 import { AudioProgressBar } from './AudioProgressBar';
+import { AiOutlineAudioMuted, AiOutlineSound } from 'react-icons/ai';
 
 interface TrackAudioPlayerProps
   extends React.AudioHTMLAttributes<HTMLAudioElement> {
@@ -83,7 +84,7 @@ export const TrackAudioPlayer = ({
       />
       <div className="group relative flex">
         <button onClick={() => setIsMuted(prevState => !prevState)}>
-          {isMuted && <AiOutlineMuted size={20} />}
+          {isMuted && <AiOutlineAudioMuted size={20} />}
           {!isMuted && <AiOutlineSound size={20} />}
         </button>
         <input

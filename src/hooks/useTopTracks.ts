@@ -1,21 +1,16 @@
 import { useQuery } from '@tanstack/react-query';
 import { fetchUserTopTracks } from '../util/http-spotify';
 import { getMinutesFromMiliseconds } from '../lib/time';
-import { getAuthToken } from '../ui/auth';
 
 export function useTopTracks(
   time_range: 'short_term' | 'medium_term' | 'long_term',
   limit?: number
 ) {
-  const token = getAuthToken();
-  if (!token) throw new Error('Missing token');
-
   const { data } = useQuery({
-    queryKey: ['user-top-tracks', token, time_range, limit],
-    queryFn: ({ signal }) =>
-      fetchUserTopTracks(token, time_range, signal, limit),
+    queryKey: ['user-top-tracks', time_range, limit],
+    queryFn: ({ signal }) => fetchUserTopTracks(time_range, signal, limit),
   });
-  
+
   const userTopTracks: {
     id: string;
     track_name: string;

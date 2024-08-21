@@ -1,14 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
-import { getAuthToken } from '../ui/auth';
 import { fetchTrackById } from '../util/http-spotify';
 
 export function useTrackById(id: string) {
-  const token = getAuthToken();
-  if (!token) throw new Error('Missing token!');
-
   const { data } = useQuery({
-    queryKey: ['track', token, id],
-    queryFn: ({ signal }) => fetchTrackById(token, id, signal),
+    queryKey: ['track', id],
+    queryFn: ({ signal }) => fetchTrackById(id, signal),
   });
 
   if (data) {

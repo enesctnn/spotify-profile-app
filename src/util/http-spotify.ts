@@ -16,14 +16,10 @@ import {
 import spotifyAxios from './spotify-axios';
 
 export async function fetchUserProfileDetails(
-  authorizationToken: string,
   signal?: AbortSignal
 ): Promise<SpotifyProfileResponse> {
   try {
     const res = await spotifyAxios.get('me', {
-      headers: {
-        Authorization: `Bearer ${authorizationToken}`,
-      },
       signal,
     });
     return res.data;
@@ -34,7 +30,6 @@ export async function fetchUserProfileDetails(
 }
 
 export async function fetchUserTopArtists(
-  authorizationToken: string,
   time_range: 'short_term' | 'medium_term' | 'long_term',
   signal?: AbortSignal,
   limit = 50
@@ -43,9 +38,6 @@ export async function fetchUserTopArtists(
     const res = await spotifyAxios.get(
       `me/top/artists?limit=${limit}&time_range=${time_range}`,
       {
-        headers: {
-          Authorization: `Bearer ${authorizationToken}`,
-        },
         signal,
       }
     );
@@ -57,7 +49,6 @@ export async function fetchUserTopArtists(
 }
 
 export async function fetchUserTopTracks(
-  authorizationToken: string,
   time_range: 'short_term' | 'medium_term' | 'long_term',
   signal?: AbortSignal,
   limit = 50
@@ -66,9 +57,6 @@ export async function fetchUserTopTracks(
     const res = await spotifyAxios.get(
       `me/top/tracks?limit=${limit}&time_range=${time_range}`,
       {
-        headers: {
-          Authorization: `Bearer ${authorizationToken}`,
-        },
         signal,
       }
     );
@@ -80,15 +68,11 @@ export async function fetchUserTopTracks(
 }
 
 export async function fetchUserPlaylists(
-  authorizationToken: string,
   signal?: AbortSignal,
   limit = 50
 ): Promise<SpotifyUserPlaylistResponse> {
   try {
     const res = await spotifyAxios.get(`me/playlists?limit=${limit}`, {
-      headers: {
-        Authorization: `Bearer ${authorizationToken}`,
-      },
       signal,
     });
     return res.data;
@@ -99,7 +83,6 @@ export async function fetchUserPlaylists(
 }
 
 export async function fetchUserRecentlyPlayed(
-  authorizationToken: string,
   signal?: AbortSignal,
   limit = 50
 ): Promise<SpotifyRecentlyPlayedResponse> {
@@ -107,9 +90,6 @@ export async function fetchUserRecentlyPlayed(
     const res = await spotifyAxios.get(
       `me/player/recently-played?limit=${limit}`,
       {
-        headers: {
-          Authorization: `Bearer ${authorizationToken}`,
-        },
         signal,
       }
     );
@@ -123,15 +103,11 @@ export async function fetchUserRecentlyPlayed(
 }
 
 export async function fetchArtistById(
-  authorizationToken: string,
   id: string,
   signal?: AbortSignal
 ): Promise<SpotifyArtistResponse> {
   try {
     const res = await spotifyAxios.get(`artists/${id}`, {
-      headers: {
-        Authorization: `Bearer ${authorizationToken}`,
-      },
       signal,
     });
     return res.data;
@@ -142,15 +118,11 @@ export async function fetchArtistById(
 }
 
 export async function fetchTrackById(
-  authorizationToken: string,
   id: string,
   signal?: AbortSignal
 ): Promise<SpotifyTrackResponse> {
   try {
     const res = await spotifyAxios.get(`tracks/${id}`, {
-      headers: {
-        Authorization: `Bearer ${authorizationToken}`,
-      },
       signal,
     });
     return res.data;
@@ -161,15 +133,11 @@ export async function fetchTrackById(
 }
 
 export async function fetchPlaylistById(
-  authorizationToken: string,
   id: string,
   signal?: AbortSignal
 ): Promise<SpotifyPlaylistResponseById> {
   try {
     const res = await spotifyAxios.get(`playlists/${id}`, {
-      headers: {
-        Authorization: `Bearer ${authorizationToken}`,
-      },
       signal,
     });
     return res.data;
@@ -180,15 +148,11 @@ export async function fetchPlaylistById(
 }
 
 export async function fetchTrackAnalysis(
-  authorizationToken: string,
   id: string,
   signal?: AbortSignal
 ): Promise<SpotifyTrackAnalysisResponse> {
   try {
     const res = await spotifyAxios.get(`audio-features/${id}`, {
-      headers: {
-        Authorization: `Bearer ${authorizationToken}`,
-      },
       signal,
     });
     return res.data;
@@ -199,15 +163,11 @@ export async function fetchTrackAnalysis(
 }
 
 export async function fetchSeveralTrackAnalysis(
-  authorizationToken: string,
   ids: string[],
   signal?: AbortSignal
 ): Promise<{ audio_features: SpotifyTrackAnalysisResponse[] }> {
   try {
     const res = await spotifyAxios.get(`audio-features?ids=${ids.join(',')}`, {
-      headers: {
-        Authorization: `Bearer ${authorizationToken}`,
-      },
       signal,
     });
     return res.data;
@@ -220,7 +180,6 @@ export async function fetchSeveralTrackAnalysis(
 }
 
 export async function fetchTrackRecommendations(
-  authorizationToken: string,
   ids: string[],
   signal?: AbortSignal
 ): Promise<TrackRecommendationResponse> {
@@ -228,9 +187,6 @@ export async function fetchTrackRecommendations(
     const res = await spotifyAxios.get(
       `recommendations?seed_tracks=${ids.slice(0, 5).join(',')}`,
       {
-        headers: {
-          Authorization: `Bearer ${authorizationToken}`,
-        },
         signal,
       }
     );
@@ -244,7 +200,6 @@ export async function fetchTrackRecommendations(
 }
 
 export async function createPlaylist(
-  authorizationToken: string,
   user_id: string,
   name: string,
   description: string,
@@ -258,11 +213,6 @@ export async function createPlaylist(
         description: JSON.stringify(description),
       },
       {
-        headers: {
-          Authorization: `Bearer ${authorizationToken}`,
-          'Content-Type': 'application/json',
-        },
-
         signal,
       }
     );
@@ -274,7 +224,6 @@ export async function createPlaylist(
 }
 
 export async function addItemsToPlaylist(
-  authorizationToken: string,
   playlist_id: string,
   track_uris: string[],
   signal?: AbortSignal
@@ -284,10 +233,6 @@ export async function addItemsToPlaylist(
       `playlists/${playlist_id}/tracks?uris=${track_uris.join(',')}`,
       {},
       {
-        headers: {
-          Authorization: `Bearer ${authorizationToken}`,
-          'Content-Type': 'application/json',
-        },
         signal,
       }
     );

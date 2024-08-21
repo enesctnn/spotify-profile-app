@@ -1,7 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import { getAuthToken } from '../ui/auth';
-import { fetchTrackAnalysis } from '../util/http-spotify';
 import { getMinutesFromMiliseconds } from '../lib/time';
+import { fetchTrackAnalysis } from '../util/http-spotify';
 import { useTrackById } from './useTrackById';
 
 function keyToChord(key: number) {
@@ -28,12 +27,9 @@ function keyToChord(key: number) {
 }
 
 export function useTrackAnalysis(id: string) {
-  const token = getAuthToken();
-  if (!token) throw new Error('Missing token!');
-
   const { data } = useQuery({
     queryKey: ['artist', id],
-    queryFn: ({ signal }) => fetchTrackAnalysis(token, id, signal),
+    queryFn: ({ signal }) => fetchTrackAnalysis(id, signal),
   });
 
   const trackData = useTrackById(id);
