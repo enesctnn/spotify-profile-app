@@ -1,9 +1,11 @@
-import { useState } from 'react';
+import { useMutation } from '@tanstack/react-query';
+import { useEffect } from 'react';
+import { useCreatePlaylistFromIds } from '../../hooks/useCreatePlaylistFromIds copy 2';
 import { usePlaylistTrackIds } from '../../hooks/usePlaylistTrackIds';
 import { useUserDetails } from '../../hooks/useUserDetails';
+import { addItemsToPlaylist } from '../../util/http-spotify';
 import { PathLink } from '../shared/PathLink';
 import { Button } from '../ui/button';
-import { CreatePlaylist } from './CreatePlaylist';
 
 export const RecommendationsHeader = ({
   id,
@@ -15,9 +17,26 @@ export const RecommendationsHeader = ({
   uris: string[];
 }) => {
   const userData = useUserDetails();
+
   const tracksData = usePlaylistTrackIds(id);
-  const [saveToSpotify, setSaveToSpotify] = useState<boolean>(false);
-  const handleSaveToSpotify = () => setSaveToSpotify(true);
+
+  const { createNewPlaylistMutation, playlistId } = useCreatePlaylistFromIds(
+    `Recommended Songs Based on ${playlist_name}`
+  );
+
+  const { mutate: addItemsToCreatedPlaylist, data } = useMutation({
+    mutationFn: (id: string) => addItemsToPlaylist(id, uris),
+  });
+
+  const handleCreatePlaylistFromRecommendedPlaylist = async () => {
+    createNewPlaylistMutation();
+  };
+
+  useEffect(() => {
+    if (playlistId) {
+      addItemsToCreatedPlaylist(playlistId);
+    }
+  }, [playlistId, addItemsToCreatedPlaylist]);
 
   return (
     <header className="flex items-center justify-between gap-y-4 max-md:flex-col">
@@ -32,14 +51,20 @@ export const RecommendationsHeader = ({
         </PathLink>{' '}
         ”
       </h1>
-      {!saveToSpotify && userData && tracksData && (
-        <Button onClick={handleSaveToSpotify}>Save to Spotify</Button>
+      {!playlistId && userData && tracksData && (
+        <Button onClick={handleCreatePlaylistFromRecommendedPlaylist}>
+          Save to Spotify
+        </Button>
       )}
-      {saveToSpotify && (
-        <CreatePlaylist
-          name={`Recommended Songs Based on ${playlist_name}`}
-          uris={uris}
-        />
+      {playlistId && data && (
+        <a
+          href={`https://open.spotify.com/playlist/${playlistId}`}
+          target="_blank"
+        >
+          <Button className="bg-spotify-green text-base hover:bg-spotify-green-100">
+            Open on Spotify
+          </Button>
+        </a>
       )}
     </header>
   );

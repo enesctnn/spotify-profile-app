@@ -202,20 +202,13 @@ export async function fetchTrackRecommendations(
 export async function createPlaylist(
   user_id: string,
   name: string,
-  description: string,
-  signal?: AbortSignal
+  description: string
 ): Promise<CreatePlaylistResponse> {
   try {
-    const res = await spotifyAxios.post(
-      `users/${user_id}/playlists`,
-      {
-        name: JSON.stringify(name),
-        description: JSON.stringify(description),
-      },
-      {
-        signal,
-      }
-    );
+    const res = await spotifyAxios.post(`users/${user_id}/playlists`, {
+      name: JSON.stringify(name),
+      description: JSON.stringify(description),
+    });
     return res.data;
   } catch (error) {
     if (error instanceof AxiosError) throw new Error(error.message);
@@ -225,16 +218,11 @@ export async function createPlaylist(
 
 export async function addItemsToPlaylist(
   playlist_id: string,
-  track_uris: string[],
-  signal?: AbortSignal
+  track_uris: string[]
 ): Promise<{ snapshot_id: string }> {
   try {
     const res = await spotifyAxios.post(
-      `playlists/${playlist_id}/tracks?uris=${track_uris.join(',')}`,
-      {},
-      {
-        signal,
-      }
+      `playlists/${playlist_id}/tracks?uris=${track_uris.join(',')}`
     );
     return res.data;
   } catch (error) {
