@@ -1,5 +1,6 @@
 import { redirect } from 'react-router-dom';
 import { baseUrl } from '../config/baseUrl';
+import axios from '../util/spotify-axios';
 
 export function getTokenDuration() {
   const storedExpirationDate = localStorage.getItem('spotify_token_expiration');
@@ -44,7 +45,7 @@ export function tokenLoader() {
       localStorage.setItem('spotify_access_token', String(tkn));
     }
   }
-  if (token) return redirect(`${baseUrl}profile`);
+  if (token && token !== 'EXPIRED') return redirect(`${baseUrl}profile`);
 
   return token;
 }
@@ -55,6 +56,8 @@ export function checkTokenLoader() {
     localStorage.removeItem('spotify_access_token');
     localStorage.removeItem('spotify_token_expiration');
     return redirect(baseUrl);
+  } else {
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
   }
 
   return token;
